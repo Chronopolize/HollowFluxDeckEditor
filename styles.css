@@ -1,0 +1,12 @@
+
+
+.card-image{
+	width: 100px;
+	transition: width 0.5s;
+	vertical-align: top;
+}
+
+.card-image:hover {
+    width: 300px;
+     transition: width 0.5s;
+}
