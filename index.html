@@ -9,7 +9,16 @@
 <body>
 	
 	<div class="split left">
-		<div class="cardSearchPanel">Card Search</div>
+		<div class="cardSearchPanel">
+			<div>Card Name: <input type="text" class="nameSearch"></div>
+			<div>Description: <input type="text" class="descriptionSearch"> (You can narrow down results multiple terms)</div>
+			<div>
+				Cost: 
+				<span class="costFilterValues"></span>
+				<button type="button" class="costFilterSelectAll">All</button>
+				<button type="button" class="costFilterSelectNone">None</button>
+			</div>
+		</div>
 		<div class="cardListingPanel"></div>
 	</div>
 	<div class="split right">

@@ -95,10 +95,10 @@ const cardRepo = [
    "id": 11,
    "type": "C",
    "cost": 2,
-   "name": "等活者　アリヤ",
+   "name": "等活者　アリヤ",
    "attributes": "論霊・始原織",
    "desc": "[1S]: Give this character +1000 until EoT\n[1+Unsleep]: Give this character +1000 and \"can't attack\" until EoT. ",
-   "power": "2000"
+   "power": "2500"
  },
  {
    "id": 12,
@@ -157,10 +157,10 @@ const cardRepo = [
  {
    "id": 18,
    "type": "Cmd",
-   "cost": 2,
+   "cost": 3,
    "name": "スペルフォーカス",
    "attributes": "魔術",
-   "desc": "Draw a card, then ramp using a card from your hand.\nDT: Untap 1 energy",
+   "desc": "Draw two cards, then ramp using a card from your hand.\nDT: Untap 1 energy",
    "power": "/"
  },
  {
@@ -223,8 +223,8 @@ const cardRepo = [
    "cost": 3,
    "name": "メリアベル・サンダークロス",
    "attributes": "人間・始原織",
-   "desc": "Vigilance\nAs long as this character is on the battlefield, it is immune to instances of damage less than 3000.\nDT: Give an target character +2000 until EoT.",
-   "power": "3000"
+   "desc": "Vigilance\nAs long as this character is on the battlefield, it is immune to instances of damage less than 3500.\nDT: Give an target character +2000 until EoT.",
+   "power": "3500"
  },
  {
    "id": 26,
@@ -385,7 +385,7 @@ const cardRepo = [
    "cost": 5,
    "name": "破星者 メテオライト",
    "attributes": "論霊・始原織",
-   "desc": "[S]: Set the top card of your main deck onto this as \"チャージ Cost:1 始原識 Mod: +1000\"\n[Trash three set cards attached to this card] Deal 1 damage to target player and 5000 damage to all characters they control.",
+   "desc": "Vigilance\n[S]: Set the top card of your main deck onto this as \"チャージ Cost:1 始原識 Mod: +1000\"\n[Trash four set cards attached to this card]: Deal 1 damage to target player and 6000 damage to all characters they control.",
    "power": "5000"
  },
  {
@@ -421,7 +421,7 @@ const cardRepo = [
    "cost": 5,
    "name": "メビウスハート",
    "attributes": "魔術",
-   "desc": "Deal 5000 damage to target slept character. Then sleep all your opponent's characters.",
+   "desc": "Deal 5000 damage to target character. Then sleep all your opponent's characters.",
    "power": "/"
  },
  {
@@ -430,7 +430,7 @@ const cardRepo = [
    "cost": 6,
    "name": "克肖者 デュナミス",
    "attributes": "理霊・特異存在",
-   "desc": "[Remove two cards in your trash from the game]: Deal X*1000 damage to target character, where X is the number of your cards removed from the game. Only use this ability once per turn.\n[3S]: Put one of your cards removed from the game into your hand.",
+   "desc": "[Remove two cards in your trash from the game]: Deal X*1000 damage to target character, where X is the number of your cards removed from the game. Only use this ability once per turn.\n[3S]: Put one of your cards, costing 7 or less, removed from the game, into your hand.",
    "power": "6500"
  },
  {
@@ -484,8 +484,8 @@ const cardRepo = [
    "cost": 7,
    "name": "神領神奈",
    "attributes": "人間",
-   "desc": "FF: Deal 1 damage to target player\n[2]: Until end of turn, this gets Sunder and Retaliate. Only use this ability once per turn.",
-   "power": "8000"
+   "desc": "FF: Deal 1 damage to target player.\n As long as you have 0 cards in hand, this card has Vigilance. \n [Discard a card]: This gains Sunder and Retaliate. Only use this ability once per turn.",
+   "power": "7500"
  },
  {
    "id": 55,
@@ -691,7 +691,7 @@ const cardRepo = [
    "cost": 2,
    "name": "雑念排除",
    "attributes": "魔術",
-   "desc": "You cannot play this card If you've already played a card named \"雑念排除\" this turn.\nUntap up to 5 energy. Remove this card from the game.\nDT: Untap 1 energy.",
+   "desc": "You cannot play this card If you've already played a card named \"雑念排除\" this turn.\nUntap up to 3 energy. Remove this card from the game.\nDT: Untap 1 energy.",
    "power": "/"
  },
  {
@@ -823,11 +823,11 @@ const cardRepo = [
  {
    "id": 92,
    "type": "C",
-   "cost": 5,
+   "cost": 7,
    "name": "王立アカデミーの学徒 ルア",
    "attributes": "人間・魔術",
    "desc": "FF: You may trash one of the opponent's energy cards. If you do, ramp 1 and sleep this character.\n[2S]: Sleep target character",
-   "power": "2000"
+   "power": "4000"
  },
  {
    "id": 93,
