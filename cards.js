@@ -1,119 +1,119 @@
-$( document ).ready(function() {
-  preProcessCardRepo()
-  addCards();
-  setupSearchForm()
-  applySearchFilters()
+$(document).ready(function() {
+	preProcessCardRepo()
+	addCards();
+	setupSearchForm()
+	applySearchFilters()
 });
 
 const repoCardCount = 150;
-function addCards(){
- 
- let dest = $('.cardListingPanel').first();
- for (i=1;i<=repoCardCount;i++){
- 	let img = $(`<img class="card-image" cardid="${i}" src="./img/cards/${i}.jpg"></img>`)
+function addCards() {
 
-img.hover(onHover, null);
- 	dest.append(img);
+	let dest = $('.cardListingPanel').first();
+	for (i = 1; i <= repoCardCount; i++) {
+		let img = $(`<img class="card-image" cardid="${i}" src="./img/cards/${i}.jpg"></img>`)
 
-function onHover(){
-	
-	let id = $(this).attr("cardid");
-	// console.log("hovered cardid", cardid)
-	let panel = $('.selectedCard')
-	panel.attr("src", `./img/cards/${id}.jpg`);
-	panel.css("visibility", "visible");
+		img.hover(onHover, null);
+		dest.append(img);
 
-	showCardInfo(id);
-}
-function offHover(){
-	$('.selectedCard').css("visibility", "hidden");
-	clearCardInfo()
-}
- }
+		function onHover() {
 
+			let id = $(this).attr("cardid");
+			// console.log("hovered cardid", cardid)
+			let panel = $('.selectedCard')
+			panel.attr("src", `./img/cards/${id}.jpg`);
+			panel.css("visibility", "visible");
 
-
- 
-}
-
- function showCardInfo(id){
- 	const header = $('.cardHeader');
- 	const desc = $('.cardDesc');
-
- 	const card = cardRepo[id];
- 	const power = (card.type === "Set Card" ? "+" : "") + card.power;
-
- 	if(card){
- 		header.html(`<span class="cardTitle">${card.name}</span> {Cost: ${card.cost}} id: ${id}
- 			${card.type} [${power}] ー ${card.attributes.join("、")}`
- 			)
- 		desc.text(card.desc)
- 	}else{
- 		clearCardInfo();
- 	}
-
- }
-
- function clearCardInfo(){
- 	const header = $('.cardHeader');
- 	const desc = $('.cardDesc');
- 	header.text('')
- 	desc.text('')
- }
-
-function preProcessCardRepo(){
-
-	//Init undefined cards
-	for(let id=1;id<=repoCardCount;id++){
-		if(!cardRepo[id]){
-			cardRepo[id] = {
-			   id: id,
-			   type: "Unknown",
-			   cost: 0,
-			   name: "Unknown Card",
-			   attributes: "",
-			   desc: "",
-			   power: "0"
-			 };
+			showCardInfo(id);
+		}
+		function offHover() {
+			$('.selectedCard').css("visibility", "hidden");
+			clearCardInfo()
 		}
 	}
-	for(card of cardRepo){
-		if(card.cost === null){
+
+
+
+
+}
+
+function showCardInfo(id) {
+	const header = $('.cardHeader');
+	const desc = $('.cardDesc');
+
+	const card = cardRepo[id];
+	const power = (card.type === "Set Card" ? "+" : "") + card.power;
+
+	if (card) {
+		header.html(`<span class="cardTitle">${card.name}</span> {Cost: ${card.cost}} id: ${id}
+			${card.type} [${power}] ー ${card.attributes.join("、")}`
+			)
+		desc.text(card.desc)
+	} else {
+		clearCardInfo();
+	}
+
+}
+
+function clearCardInfo() {
+	const header = $('.cardHeader');
+	const desc = $('.cardDesc');
+	header.text('')
+	desc.text('')
+}
+
+function preProcessCardRepo() {
+
+	//Init undefined cards
+	for (let id = 1; id <= repoCardCount; id++) {
+		if (!cardRepo[id]) {
+			cardRepo[id] = {
+				id: id,
+				type: "Unknown",
+				cost: 0,
+				name: "Unknown Card",
+				attributes: "",
+				desc: "",
+				power: "0"
+			};
+		}
+	}
+	for (card of cardRepo) {
+		if (card.cost === null) {
 			card.cost = 0;
 		}
 
-		if(!card.type){
+		if (!card.type) {
 			card.type = "";
 		}
-		switch(card.type.toUpperCase()){
+		switch (card.type.toUpperCase()) {
 			case "C":
-				card.type="Character"
+			card.type = "Character"
 			break;
 			case "CMD":
-				card.type="Command"
+			card.type = "Command"
 			break;
 			case "S":
-				card.type="Set"
-				break;
+			card.type = "Set"
+			break;
 			default:
-				card.type="Unknown"
+			card.type = "Unknown"
 		}
-		if(card.attributes === null || typeof card.attributes == "undefined"){
+		if (card.attributes === null || typeof card.attributes == "undefined") {
 			card.attributes = ["Unknown"];
-		}else if(card.attributes === ""){
+		} else if (card.attributes === "") {
 			card.attributes = [];
-		}else{
+		} else {
 			card.attributes = card.attributes.split(/[\s,・]+/)
 			console.log(card.attributes);
 		}
 	}
 }
 
-function getCardElement(cardid){
-	if(Number.isInteger(cardid) && cardid >=0){
+function getCardElement(cardid) {
+	if (Number.isInteger(cardid) && cardid >= 0) {
 		let element = $(`img[cardid='${cardid}'`).first();
 		return element;
-	}else{
+	} else {
 		console(`${cardid} is not a valid card id`)
 	}
 }
@@ -122,117 +122,166 @@ function getCardElement(cardid){
 
 const costFilterValues = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 const typeFilterValues = ["Character", "Command", "Set", "Unknown"];
+const attributeTypes = ["人間", "発現者", "魔術", "論霊", "始原織", "特異存在", "特異能力","装備"];
+const attributeSpecialOptions = ["Other", "None", "Unknown"];
 
-function setupSearchForm(){
-	$(".nameSearch").change(function(){
-		applySearchFilters();
-	})
-	$(".descriptionSearch").change(function(){
-		applySearchFilters();
-	})
-	
-	for(value of costFilterValues){
-		const checkbox = $(`<input type="checkbox" class="costFilterCheckbox" value="${value}">`)
-		$(".costFilterValues").append(value).append(checkbox).append(" ");
-		checkbox.change(function(){
-			applySearchFilters();
-		});
-	}
 
-	$(".costFilterSelectAll").click(function(){
-		costFilterSelectAll();
+function setupSearchForm() {
+	$(".nameSearch").change(function() {
 		applySearchFilters();
 	})
-	$(".costFilterSelectNone").click(function(){
-		costFilterSelectNone();
+	$(".descriptionSearch").change(function() {
 		applySearchFilters();
 	})
-	costFilterSelectAll();
+
+
 
 	//Type filter
-	for(value of typeFilterValues){
+	for (value of typeFilterValues) {
 		const checkbox = $(`<input type="checkbox" class="typeFilterCheckbox" value="${value}">`)
 		$(".typeFilterValues").append(value).append(checkbox).append(" ");
-		checkbox.change(function(){
+		checkbox.change(function() {
 			applySearchFilters();
 		});
 	}
 	$(".typeFilterCheckbox").prop('checked', true);
-	
 
-	
+	// Attribute filter
+	let attributeCheckboxNames = [...attributeTypes];
+	attributeCheckboxNames.push(...attributeSpecialOptions);
+
+	for (value of attributeCheckboxNames) {
+		const checkbox = $(`<input type="checkbox" class="attributeFilterCheckBox" value="${value}">`)
+		$(".attributeFilterValues").append(value).append(checkbox).append(" ");
+		$(".attributeFilterCheckbox").prop('checked', false);
+		checkbox.change(function() {
+			applySearchFilters();
+		});
+	}
+
+
+	// Cost filters
+	for (value of costFilterValues) {
+		const checkbox = $(`<input type="checkbox" class="costFilterCheckbox" value="${value}">`)
+		$(".costFilterValues").append(value).append(checkbox).append(" ");
+		checkbox.change(function() {
+			applySearchFilters();
+		});
+	}
+
+	$(".costFilterSelectAll").click(function() {
+		costFilterSelectAll();
+		applySearchFilters();
+	})
+	$(".costFilterDeselectAll").click(function() {
+		costFilterDeselectAll();
+		applySearchFilters();
+	})
+	costFilterSelectAll();
+
+
 }
 
-function costFilterSelectAll(){
+function costFilterSelectAll() {
 	$(".costFilterCheckbox").prop('checked', true);
 }
-function costFilterSelectNone(){
+function costFilterDeselectAll() {
 	$(".costFilterCheckbox").prop('checked', false);
 }
 // Search methods
 
-function applySearchFilters(){
-	
+function applySearchFilters() {
+
 
 	const nameString = $(".nameSearch").val()
 	// This is the only english text search
 	const descString = $(".descriptionSearch").val();
 	const searchTokens = descString.toLowerCase().split(" ");
 	console.log(descString, ":", searchTokens);
-	
+
 	let matchCount = 0;
-	for(let id = 1; id<=repoCardCount;id++){
+	for (let id = 1; id <= repoCardCount; id++) {
 		const card = cardRepo[id];
 		let matches = true;
 
 
-		
-		if(nameString){
-			if(!card.name.includes(nameString)){
+
+		if (nameString) {
+			if (!card.name.includes(nameString)) {
 				matches = false;
-			}		
-		}
-		
-		if(descString){
-			if(!card.desc){
-				matches = false
-			}else{
-				for(token of searchTokens){
-					if(!card.desc.toLowerCase().includes(token)){
-						matches = false;
-					}		
-				
-				}	
 			}
-			
 		}
 
-		for (value of costFilterValues){
-			checkbox = $(`.costFilterCheckbox[value="${value}"]`)
-			if(checkbox){
-				if(!checkbox.prop("checked") && card.cost == value){
-					matches = false;
+		if (descString) {
+			if (!card.desc) {
+				matches = false
+			} else {
+				for (token of searchTokens) {
+					if (!card.desc.toLowerCase().includes(token)) {
+						matches = false;
+					}
+
 				}
 			}
+
 		}
+
+		
+		/* Type filter */
 		let typeMatches = false;
-		for (value of typeFilterValues){
+		for (value of typeFilterValues) {
 			checkbox = $(`.typeFilterCheckbox[value="${value}"]`)
-			if(checkbox){
-				if(checkbox.prop("checked") && equalsCI(card.type, value)){
+			if (checkbox) {
+				if (checkbox.prop("checked") && equalsCI(card.type, value)) {
 					typeMatches = true;
 				}
 			}
 		}
 		matches &= typeMatches;
 
+		/* Attribute filter */
+
+		// Handle regular attributes. Cards must match all the selected attributes.
+		let attributeMatches = true;
+		for (value of attributeTypes) {
+			checkbox = $(`.attributeFilterCheckbox[value="${value}"]`)
+			if (checkbox) {
+				if (checkbox.prop("checked") && !card.attributes.includes(value)) {
+					attributeMatches = false;
+				}
+			}
+		}
+		// Handle special options for attributes
+
+		checkbox = $(`.attributeFilterCheckbox[value="Other"]`);
+		if (checkbox.prop("checked")){
+			if(card.attributes.length == 0 || card.attributes.includes("Unknown")){
+				attributeMatches = false;
+			}else if(card.attributes.some(a => attributeTypes.includes(a))){
+				attributeMatches = false;
+			}
+		}
+
+		matches &= attributeMatches;
+
+
+		/* Cost filter */
+		for (value of costFilterValues) {
+			checkbox = $(`.costFilterCheckbox[value="${value}"]`)
+			if (checkbox) {
+				if (!checkbox.prop("checked") && card.cost == value) {
+					matches = false;
+				}
+			}
+		}
 
 
 
-		if(matches){
+
+		if (matches) {
 			getCardElement(id).show();
-			matchCount+=1;
-		}else{
+			matchCount += 1;
+		} else {
 			getCardElement(id).hide();
 		}
 		$(".matchCount").text(matchCount + " cards found")
@@ -241,9 +290,9 @@ function applySearchFilters(){
 
 
 function equalsCI(a, b) {
- 	if(typeof a === 'string' && typeof b === 'string'){
- 		return a.localeCompare(b, undefined, { sensitivity: 'accent' }) === 0
- 	}else{
- 		console.log("ciEquals: Expected type string string, got:", typeof a, typeof b);
- 	}
+	if (typeof a === 'string' && typeof b === 'string') {
+		return a.localeCompare(b, undefined, { sensitivity: 'accent' }) === 0
+	} else {
+		console.log("ciEquals: Expected type string string, got:", typeof a, typeof b);
+	}
 }
