@@ -46,7 +46,7 @@ function showCardInfo(id) {
 	if (card) {
 		header.html(`<span class="cardTitle">${card.name}</span> {Cost: ${card.cost}} id: ${id}
 			${card.type} [${power}] ー ${card.attributes.join("、")}`
-			)
+		)
 		desc.text(card.desc)
 	} else {
 		clearCardInfo();
@@ -87,16 +87,16 @@ function preProcessCardRepo() {
 		}
 		switch (card.type.toUpperCase()) {
 			case "C":
-			card.type = "Character"
-			break;
+				card.type = "Character"
+				break;
 			case "CMD":
-			card.type = "Command"
-			break;
+				card.type = "Command"
+				break;
 			case "S":
-			card.type = "Set"
-			break;
+				card.type = "Set"
+				break;
 			default:
-			card.type = "Unknown"
+				card.type = "Unknown"
 		}
 		if (card.attributes === null || typeof card.attributes == "undefined") {
 			card.attributes = ["Unknown"];
@@ -122,7 +122,7 @@ function getCardElement(cardid) {
 
 const costFilterValues = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 const typeFilterValues = ["Character", "Command", "Set", "Unknown"];
-const attributeTypes = ["人間", "発現者", "魔術", "論霊", "始原織", "特異存在", "特異能力","装備"];
+const attributeTypes = ["人間", "発現者", "魔術", "論霊", "始原織", "特異存在", "特異能力", "装備"];
 const attributeSpecialOptions = ["Other", "None", "Unknown"];
 
 
@@ -192,91 +192,22 @@ function costFilterDeselectAll() {
 
 function applySearchFilters() {
 
-
-	const nameString = $(".nameSearch").val()
-	// This is the only english text search
-	const descString = $(".descriptionSearch").val();
-	const searchTokens = descString.toLowerCase().split(" ");
-	console.log(descString, ":", searchTokens);
-
 	let matchCount = 0;
+
 	for (let id = 1; id <= repoCardCount; id++) {
 		const card = cardRepo[id];
 		let matches = true;
-
-
-
-		if (nameString) {
-			if (!card.name.includes(nameString)) {
-				matches = false;
-			}
-		}
-
-		if (descString) {
-			if (!card.desc) {
-				matches = false
-			} else {
-				for (token of searchTokens) {
-					if (!card.desc.toLowerCase().includes(token)) {
-						matches = false;
-					}
-
-				}
-			}
-
-		}
-
 		
-		/* Type filter */
-		let typeMatches = false;
-		for (value of typeFilterValues) {
-			checkbox = $(`.typeFilterCheckbox[value="${value}"]`)
-			if (checkbox) {
-				if (checkbox.prop("checked") && equalsCI(card.type, value)) {
-					typeMatches = true;
-				}
-			}
-		}
-		matches &= typeMatches;
 
-		/* Attribute filter */
+		matches &= nameMatches(card);
 
-		// Handle regular attributes. Cards must match all the selected attributes.
-		let attributeMatches = true;
-		for (value of attributeTypes) {
-			checkbox = $(`.attributeFilterCheckbox[value="${value}"]`)
-			if (checkbox) {
-				if (checkbox.prop("checked") && !card.attributes.includes(value)) {
-					attributeMatches = false;
-				}
-			}
-		}
-		// Handle special options for attributes
+		matches &= descriptionMatches(card);
 
-		checkbox = $(`.attributeFilterCheckbox[value="Other"]`);
-		if (checkbox.prop("checked")){
-			if(card.attributes.length == 0 || card.attributes.includes("Unknown")){
-				attributeMatches = false;
-			}else if(card.attributes.some(a => attributeTypes.includes(a))){
-				attributeMatches = false;
-			}
-		}
+		matches &= typeMatches(card);
 
-		matches &= attributeMatches;
+		matches &= attributeMatches(card);
 
-
-		/* Cost filter */
-		for (value of costFilterValues) {
-			checkbox = $(`.costFilterCheckbox[value="${value}"]`)
-			if (checkbox) {
-				if (!checkbox.prop("checked") && card.cost == value) {
-					matches = false;
-				}
-			}
-		}
-
-
-
+		matches &= costMatches(card);
 
 		if (matches) {
 			getCardElement(id).show();
@@ -286,6 +217,81 @@ function applySearchFilters() {
 		}
 		$(".matchCount").text(matchCount + " cards found")
 	}
+}
+
+
+function nameMatches(card){
+	const nameString = $(".nameSearch").val()
+	if(!nameString)
+		return true;
+	return card.name.includes(nameString)
+}
+
+function descriptionMatches(card) {
+	const descString = $(".descriptionSearch").val();
+	const searchTokens = descString.toLowerCase().split(" ");
+
+	if (!descString)
+		return true;
+	if (!card.desc) {
+		return false;
+	}
+	for (token of searchTokens) {
+		if (!card.desc.toLowerCase().includes(token)) {
+			return false;
+		}
+	}
+	return true;
+
+}
+
+function typeMatches(card) {
+	let matches = false;
+	for (value of typeFilterValues) {
+		checkbox = $(`.typeFilterCheckbox[value="${value}"]`)
+		if (checkbox) {
+			if (checkbox.prop("checked") && equalsCI(card.type, value)) {
+				matches = true;
+			}
+		}
+	}
+	return matches;
+}
+
+function attributeMatches(card) {
+	// Handle regular attributes. Cards must match all the selected attributes.
+	let matches = true;
+	for (value of attributeTypes) {
+		checkbox = $(`.attributeFilterCheckbox[value="${value}"]`)
+		if (checkbox) {
+			if (checkbox.prop("checked") && !card.attributes.includes(value)) {
+				matches = false;
+			}
+		}
+	}
+	// Handle special options for attributes
+
+	checkbox = $(`.attributeFilterCheckbox[value="Other"]`);
+	if (checkbox.prop("checked")) {
+		if (card.attributes.length == 0 || card.attributes.includes("Unknown")) {
+			matches = false;
+		} else if (card.attributes.some(a => attributeTypes.includes(a))) {
+			matches = false;
+		}
+	}
+	return matches;
+}
+function costMatches(card) {
+	let matches = true;
+	for (value of costFilterValues) {
+		checkbox = $(`.costFilterCheckbox[value="${value}"]`)
+		if (checkbox) {
+			if (!checkbox.prop("checked") && card.cost == value) {
+				matches = false;
+			}
+		}
+	}
+	return matches;
 }
 
 
