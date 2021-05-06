@@ -42,9 +42,10 @@ function offHover(){
 
  	const card = cardRepo[id];
  	const power = (card.type === "Set Card" ? "+" : "") + card.power;
+
  	if(card){
  		header.html(`<span class="cardTitle">${card.name}</span> {Cost: ${card.cost}} id: ${id}
- 			${card.type} [${power}] ー ${card.attributes}`
+ 			${card.type} [${power}] ー ${card.attributes.join("、")}`
  			)
  		desc.text(card.desc)
  	}else{
@@ -80,9 +81,7 @@ function preProcessCardRepo(){
 		if(card.cost === null){
 			card.cost = 0;
 		}
-	}
 
-	for(card of cardRepo){
 		if(!card.type){
 			card.type = "";
 		}
@@ -98,6 +97,14 @@ function preProcessCardRepo(){
 				break;
 			default:
 				card.type="Unknown"
+		}
+		if(card.attributes === null || typeof card.attributes == "undefined"){
+			card.attributes = ["Unknown"];
+		}else if(card.attributes === ""){
+			card.attributes = [];
+		}else{
+			card.attributes = card.attributes.split(/[\s,・]+/)
+			console.log(card.attributes);
 		}
 	}
 }
