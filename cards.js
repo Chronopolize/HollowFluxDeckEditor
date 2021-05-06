@@ -1,7 +1,8 @@
 $( document ).ready(function() {
-  postProcessCardRepo()
+  preProcessCardRepo()
   addCards();
   setupSearchForm()
+  applySearchFilters()
 });
 
 const repoCardCount = 150;
@@ -59,7 +60,7 @@ function offHover(){
  	desc.text('')
  }
 
-function postProcessCardRepo(){
+function preProcessCardRepo(){
 
 	//Init undefined cards
 	for(let id=1;id<=repoCardCount;id++){
@@ -82,17 +83,21 @@ function postProcessCardRepo(){
 	}
 
 	for(card of cardRepo){
-		switch(card.type){
+		if(!card.type){
+			card.type = "";
+		}
+		switch(card.type.toUpperCase()){
 			case "C":
 				card.type="Character"
 			break;
-			case "Cmd":
+			case "CMD":
 				card.type="Command"
 			break;
 			case "S":
-				card.type="Set Card"
-			break;
+				card.type="Set"
+				break;
 			default:
+				card.type="Unknown"
 		}
 	}
 }
@@ -109,6 +114,7 @@ function getCardElement(cardid){
 
 
 const costFilterValues = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+const typeFilterValues = ["Character", "Command", "Set", "Unknown"];
 
 function setupSearchForm(){
 	$(".nameSearch").change(function(){
@@ -136,6 +142,17 @@ function setupSearchForm(){
 	})
 	costFilterSelectAll();
 
+	//Type filter
+	for(value of typeFilterValues){
+		const checkbox = $(`<input type="checkbox" class="typeFilterCheckbox" value="${value}">`)
+		$(".typeFilterValues").append(value).append(checkbox).append(" ");
+		checkbox.change(function(){
+			applySearchFilters();
+		});
+	}
+	$(".typeFilterCheckbox").prop('checked', true);
+	
+
 	
 }
 
@@ -156,6 +173,7 @@ function applySearchFilters(){
 	const searchTokens = descString.toLowerCase().split(" ");
 	console.log(descString, ":", searchTokens);
 	
+	let matchCount = 0;
 	for(let id = 1; id<=repoCardCount;id++){
 		const card = cardRepo[id];
 		let matches = true;
@@ -190,13 +208,35 @@ function applySearchFilters(){
 				}
 			}
 		}
+		let typeMatches = false;
+		for (value of typeFilterValues){
+			checkbox = $(`.typeFilterCheckbox[value="${value}"]`)
+			if(checkbox){
+				if(checkbox.prop("checked") && equalsCI(card.type, value)){
+					typeMatches = true;
+				}
+			}
+		}
+		matches &= typeMatches;
+
 
 
 
 		if(matches){
 			getCardElement(id).show();
+			matchCount+=1;
 		}else{
 			getCardElement(id).hide();
 		}
+		$(".matchCount").text(matchCount + " cards found")
 	}
+}
+
+
+function equalsCI(a, b) {
+ 	if(typeof a === 'string' && typeof b === 'string'){
+ 		return a.localeCompare(b, undefined, { sensitivity: 'accent' }) === 0
+ 	}else{
+ 		console.log("ciEquals: Expected type string string, got:", typeof a, typeof b);
+ 	}
 }
