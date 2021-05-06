@@ -870,7 +870,7 @@ const cardRepo = [
    "type": "",
    "cost": null,
    "name": "",
-   "attributes": "",
+   "attributes": null,
    "desc": "",
    "power": ""
  },
@@ -879,7 +879,7 @@ const cardRepo = [
    "type": "",
    "cost": null,
    "name": "",
-   "attributes": "",
+   "attributes": null,
    "desc": "",
    "power": ""
  },
@@ -888,7 +888,7 @@ const cardRepo = [
    "type": "",
    "cost": null,
    "name": "",
-   "attributes": "",
+   "attributes": null,
    "desc": "",
    "power": ""
  },
@@ -897,7 +897,7 @@ const cardRepo = [
    "type": "",
    "cost": null,
    "name": "",
-   "attributes": "",
+   "attributes": null,
    "desc": "",
    "power": ""
  },
@@ -906,7 +906,7 @@ const cardRepo = [
    "type": "",
    "cost": null,
    "name": "",
-   "attributes": "",
+   "attributes": null,
    "desc": "",
    "power": ""
  },
@@ -915,7 +915,7 @@ const cardRepo = [
    "type": "",
    "cost": null,
    "name": "",
-   "attributes": "",
+   "attributes": null,
    "desc": "",
    "power": ""
  },
@@ -924,7 +924,7 @@ const cardRepo = [
    "type": "",
    "cost": null,
    "name": "",
-   "attributes": "",
+   "attributes": null,
    "desc": "",
    "power": ""
  },
@@ -933,7 +933,7 @@ const cardRepo = [
    "type": "",
    "cost": null,
    "name": "",
-   "attributes": "",
+   "attributes": null,
    "desc": "",
    "power": ""
  },
@@ -942,7 +942,7 @@ const cardRepo = [
    "type": "",
    "cost": null,
    "name": "",
-   "attributes": "",
+   "attributes": null,
    "desc": "",
    "power": ""
  },
@@ -951,7 +951,7 @@ const cardRepo = [
    "type": "",
    "cost": null,
    "name": "",
-   "attributes": "",
+   "attributes": null,
    "desc": "",
    "power": ""
  },
@@ -960,7 +960,7 @@ const cardRepo = [
    "type": "",
    "cost": null,
    "name": "",
-   "attributes": "",
+   "attributes": null,
    "desc": "",
    "power": ""
  },
@@ -969,7 +969,7 @@ const cardRepo = [
    "type": "",
    "cost": null,
    "name": "",
-   "attributes": "",
+   "attributes": null,
    "desc": "",
    "power": ""
  },
@@ -978,7 +978,7 @@ const cardRepo = [
    "type": "",
    "cost": null,
    "name": "",
-   "attributes": "",
+   "attributes": null,
    "desc": "",
    "power": ""
  },
@@ -987,7 +987,7 @@ const cardRepo = [
    "type": "",
    "cost": null,
    "name": "",
-   "attributes": "",
+   "attributes": null,
    "desc": "",
    "power": ""
  },
@@ -996,7 +996,7 @@ const cardRepo = [
    "type": "",
    "cost": null,
    "name": "",
-   "attributes": "",
+   "attributes": null,
    "desc": "",
    "power": ""
  },
@@ -1005,7 +1005,7 @@ const cardRepo = [
    "type": "",
    "cost": null,
    "name": "",
-   "attributes": "",
+   "attributes": null,
    "desc": "",
    "power": ""
  },
@@ -1014,7 +1014,7 @@ const cardRepo = [
    "type": "",
    "cost": null,
    "name": "",
-   "attributes": "",
+   "attributes": null,
    "desc": "",
    "power": ""
  },
@@ -1023,7 +1023,7 @@ const cardRepo = [
    "type": "",
    "cost": null,
    "name": "",
-   "attributes": "",
+   "attributes": null,
    "desc": "",
    "power": ""
  },
@@ -1032,7 +1032,7 @@ const cardRepo = [
    "type": "",
    "cost": null,
    "name": "",
-   "attributes": "",
+   "attributes": null,
    "desc": "",
    "power": ""
  },
@@ -1041,7 +1041,7 @@ const cardRepo = [
    "type": "",
    "cost": null,
    "name": "",
-   "attributes": "",
+   "attributes": null,
    "desc": "",
    "power": ""
  },
@@ -1050,7 +1050,7 @@ const cardRepo = [
    "type": "",
    "cost": null,
    "name": "",
-   "attributes": "",
+   "attributes": null,
    "desc": "",
    "power": ""
  },
@@ -1059,7 +1059,7 @@ const cardRepo = [
    "type": "",
    "cost": null,
    "name": "",
-   "attributes": "",
+   "attributes": null,
    "desc": "",
    "power": ""
  },
@@ -1068,7 +1068,7 @@ const cardRepo = [
    "type": "",
    "cost": null,
    "name": "",
-   "attributes": "",
+   "attributes": null,
    "desc": "",
    "power": ""
  },
@@ -1077,7 +1077,7 @@ const cardRepo = [
    "type": "",
    "cost": null,
    "name": "",
-   "attributes": "",
+   "attributes": null,
    "desc": "",
    "power": ""
  },
@@ -1086,7 +1086,7 @@ const cardRepo = [
    "type": "",
    "cost": null,
    "name": "",
-   "attributes": "",
+   "attributes": null,
    "desc": "",
    "power": ""
  },
@@ -1095,7 +1095,7 @@ const cardRepo = [
    "type": "",
    "cost": null,
    "name": "",
-   "attributes": "",
+   "attributes": null,
    "desc": "",
    "power": ""
  },
@@ -1104,7 +1104,7 @@ const cardRepo = [
    "type": "",
    "cost": null,
    "name": "",
-   "attributes": "",
+   "attributes": null,
    "desc": "",
    "power": ""
  },
@@ -1113,7 +1113,7 @@ const cardRepo = [
    "type": "C",
    "cost": 2,
    "name": "\"魔族\"",
-   "attributes": "",
+   "attributes": null,
    "desc": "Whenever this character attacks or blocks, set the top card of your deck face down onto this as  \"Malignant tumor: -1000 Cost 1\".\nDT[2]: Destroy target character with power 2500 or less.",
    "power": "500"
  },
@@ -1122,7 +1122,7 @@ const cardRepo = [
    "type": "",
    "cost": 3,
    "name": "四条五花",
-   "attributes": "",
+   "attributes": null,
    "desc": "As long as this character is on the field, all other allied human characters get +1000, and characters you control lose any ability which says \"This character cannot attack.\"\nDT: look at at target player's hand.",
    "power": "3000"
  },
@@ -1131,7 +1131,7 @@ const cardRepo = [
    "type": "",
    "cost": 4,
    "name": "時の管理者 アイオン",
-   "attributes": "",
+   "attributes": null,
    "desc": "Hypersonic (Cannot be blocked except by characters with Hypersonic)\nFF: You may return  target allied character to your hand. If you do so, untap up to X energy, where X is the cost of the returned card.",
    "power": "4000"
  },
@@ -1140,7 +1140,7 @@ const cardRepo = [
    "type": "",
    "cost": 5,
    "name": "命を呪う者 まつつ結姫神",
-   "attributes": "",
+   "attributes": null,
    "desc": "When another allied character is destroyed, put it on the top of it's owner's deck instead.\nAs long as you have 3 or more face up character cards in your damage field, this gets +2000 and Sunder.\n[Destroy another allied character]: Give -1000 to target character.",
    "power": "5000"
  },
@@ -1149,7 +1149,7 @@ const cardRepo = [
    "type": "",
    "cost": 6,
    "name": "魔王習い 星生",
-   "attributes": "",
+   "attributes": null,
    "desc": "FF: Reveal a card from your guard deck. If it's a [発現者] card not named \"魔王習い 星生\" and costs equal or less than your current guard deck size, place it in play, slept. Otherwise, place it in your hand and untap up to X energy, where X is that card's cost.",
    "power": "4000"
  },
@@ -1158,7 +1158,7 @@ const cardRepo = [
    "type": "",
    "cost": 8,
    "name": "一意零",
-   "attributes": "",
+   "attributes": null,
    "desc": "FF and when destroyed: Target player exiles the top 3 cards of their main deck.\n[Carnage 2]: Destroy target character with X or less power. If succeeded, draw a card. X is total number of cards in exile.\nDT: Target player exiles the top card from their deck",
    "power": "8500"
  },
@@ -1167,7 +1167,7 @@ const cardRepo = [
    "type": "Cmd",
    "cost": 2,
    "name": "論理武装 命弾",
-   "attributes": "",
+   "attributes": null,
    "desc": "Choose a target allied and enemy character. Deal damage equal to the former's power to the latter, and deal 1 damage to latter's controller. Then, destroy the former.",
    "power": ""
  },
@@ -1176,7 +1176,7 @@ const cardRepo = [
    "type": "Cmd",
    "cost": 2,
    "name": "天の花",
-   "attributes": "",
+   "attributes": null,
    "desc": "You may return a character from your trash to your hand.\nDT[2]: You may return a character card from your trash to your hand.",
    "power": ""
  },
@@ -1185,7 +1185,7 @@ const cardRepo = [
    "type": "Cmd",
    "cost": 6,
    "name": "イグニッション、ヘリッシュ・ガンバレル",
-   "attributes": "",
+   "attributes": null,
    "desc": "[Secret Arts: インフィル]\nDeal 10000 damage to all non-human cards who do not have 「ルア」 in their name\nDT[3]: Deal 4000 damage to target character.",
    "power": ""
  }

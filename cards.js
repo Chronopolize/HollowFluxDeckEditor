@@ -71,7 +71,7 @@ function preProcessCardRepo() {
 				type: "Unknown",
 				cost: 0,
 				name: "Unknown Card",
-				attributes: "",
+				attributes: null,
 				desc: "",
 				power: "0"
 			};
@@ -260,12 +260,11 @@ function typeMatches(card) {
 
 function attributeMatches(card) {
 	// Handle regular attributes. Cards must match all the selected attributes.
-	let matches = true;
 	for (value of attributeTypes) {
 		checkbox = $(`.attributeFilterCheckbox[value="${value}"]`)
 		if (checkbox) {
 			if (checkbox.prop("checked") && !card.attributes.includes(value)) {
-				matches = false;
+				return false;
 			}
 		}
 	}
@@ -274,12 +273,27 @@ function attributeMatches(card) {
 	checkbox = $(`.attributeFilterCheckbox[value="Other"]`);
 	if (checkbox.prop("checked")) {
 		if (card.attributes.length == 0 || card.attributes.includes("Unknown")) {
-			matches = false;
+			return false;
 		} else if (card.attributes.some(a => attributeTypes.includes(a))) {
-			matches = false;
+			return false;
 		}
 	}
-	return matches;
+
+	checkbox = $(`.attributeFilterCheckbox[value="None"]`);
+	if (checkbox.prop("checked")) {
+		if (card.attributes.length !=0){
+			return false;
+		}
+	}
+
+	checkbox = $(`.attributeFilterCheckbox[value="Unknown"]`);
+	if (checkbox.prop("checked")) {
+		if (!card.attributes.includes("Unknown")) {
+			return false;
+		}
+	}
+
+	return true;
 }
 function costMatches(card) {
 	let matches = true;
