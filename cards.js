@@ -1,5 +1,7 @@
 $(document).ready(function() {
 	preProcessCardRepo()
+	labelDescriptionKeywords()
+
 	addCards();
 	setupSearchForm()
 	applySearchFilters()
@@ -47,7 +49,7 @@ function showCardInfo(id) {
 		header.html(`<span class="cardTitle">${card.name}</span> {Cost: ${card.cost}} id: ${id}
 			${card.type} [${power}] ー ${card.attributes.join("、")}`
 		)
-		desc.text(card.desc)
+		desc.html(card.descWithMarkup)
 	} else {
 		clearCardInfo();
 	}
@@ -98,6 +100,9 @@ function preProcessCardRepo() {
 			default:
 				card.type = "Unknown"
 		}
+		if(card.desc === null || typeof card.desc == undefined){
+			card.desc = "";
+		}
 		if (card.attributes === null || typeof card.attributes == "undefined") {
 			card.attributes = ["Unknown"];
 		} else if (card.attributes === "") {
@@ -105,6 +110,19 @@ function preProcessCardRepo() {
 		} else {
 			card.attributes = card.attributes.split(/[\s,・]+/)
 			console.log(card.attributes);
+		}
+	}
+}
+
+const keywords = ["Vigilance", "Piercing", "Sunder", "Hypersonic", "Retaliate", "Deathless"];
+
+function labelDescriptionKeywords(){
+	for(let id = 1; id <= repoCardCount; id++){
+		let card = cardRepo[id];
+		card.descWithMarkup = card.desc;
+		for(keyword of keywords){
+			card.descWithMarkup = card.descWithMarkup.replaceAll(keyword,`<span class="descriptionKeyword">${keyword}</span>`)
+			card.descWithMarkup = card.descWithMarkup.replaceAll(keyword.toLowerCase(),`<span class="descriptionKeyword">${keyword.toLowerCase()}</span>`)
 		}
 	}
 }
