@@ -41,7 +41,6 @@
 
 
 .selectedCardPanel{
-	
 	background-color: yellow;
 	width:350px;
 }
@@ -52,24 +51,27 @@
 }
 
 .selectedCardInfo{
-	max-width: 100%
-	padding: 2px;
+	max-width: 100%;
 	background-color:lightgray;
-
 	word-wrap:normal;
 	font-family:  "Yu Gothic", "MS Gothic";
 	font-size: 14px;
 }
 .cardHeader{
+	padding: 4px;
+	padding-bottom: 0px;
 	min-height:20px;
 	white-space: pre-line;
+
 }
 .cardTitle{
 	/*font-weight:bold;*/
 }
 .cardDesc{
+	padding-left: 4px;
+	padding-right: 4px;
 	width:100%;
-	min-height:176px;
+	min-height:164px;
 	white-space: pre-line;
 }
 
@@ -79,7 +81,7 @@
 	width:300px;
 
 	background-color: pink;
-	margin:5px;
+	padding:5px;
 }
 
 .card-image{
