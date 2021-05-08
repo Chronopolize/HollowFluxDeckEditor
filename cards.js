@@ -5,6 +5,12 @@ $(document).ready(function() {
 	addCards();
 	setupSearchForm()
 	applySearchFilters()
+
+ 	deck = new Deck()  // the currently loaded deck
+	deck.incrementCard(1);
+	deck.incrementCard(150);
+	deck.incrementCard(150);
+	regenerateDeckPanel()
 });
 
 const repoCardCount = 150;
@@ -109,7 +115,6 @@ function preProcessCardRepo() {
 			card.attributes = [];
 		} else {
 			card.attributes = card.attributes.split(/[\s,・]+/)
-			console.log(card.attributes);
 		}
 	}
 }
@@ -333,4 +338,71 @@ function equalsCI(a, b) {
 	} else {
 		console.log("ciEquals: Expected type string string, got:", typeof a, typeof b);
 	}
+}
+
+
+/* ---------------------- DECK PANEL ----------------------*/
+
+
+const MAX_CARD_MULTIPLE = 3;
+let deck;
+
+class Deck {
+	cards = [];   //map of id to number
+
+	size(){
+		return cards.length;
+	}
+	incrementCard(id){
+		let card = this.cards.find(c =>  {
+			return c.id === id
+		})
+
+		if(card){
+			if(card.copies<MAX_CARD_MULTIPLE){
+				card.copies += 1;
+			}
+		}else{
+			this.cards.push(new CardMultiple(id));
+		}
+	}
+	decrementCard(id){
+		let card = this.cards.find(c =>  {
+			return c.id === id
+		})
+		if(card){
+			card.copies -=1;
+			if(card.copies<=0){
+				this.cards = this.cards.filter(c => c !== card);
+			}
+		}
+	}
+
+	//p for private methods :/
+	pAddCard(id){
+		cards.push(new CardMultiple(id))
+	}
+}
+
+class CardMultiple{
+	constructor(id){
+		this.id = id;
+		this.copies = 1;
+	}
+	copies;
+	id;
+}
+
+function regenerateDeckPanel(){
+
+
+	let dest = $(".deckCardsPanel");
+	dest.html('');
+
+	for(cardMultiple of deck.cards){
+		let card = cardRepo[cardMultiple.id];
+		let entry = $(`<div id="deckPanelCardEntry">${card.name} x${cardMultiple.copies}</div>`)
+		dest.append(entry);
+	}
+	
 }
