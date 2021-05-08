@@ -38,25 +38,25 @@ function addCards() {
 		function onHover() {
 
 			let id = $(this).attr("cardid");
-			// console.log("hovered cardid", cardid)
-			let panel = $('.selectedCard')
-			panel.attr("src", `./img/cards/${id}.jpg`);
-			panel.css("visibility", "visible");
 
-			showCardInfo(id);
-		}
-		function offHover() {
-			$('.selectedCard').css("visibility", "hidden");
-			clearCardInfo()
+			showCardImageAndInfo(id);
 		}
 	}
 
 
 
-
 }
 
-function showCardInfo(id) {
+function showCardImage(id){
+	let panel = $('.selectedCard')
+	panel.attr("src", `./img/cards/${id}.jpg`);
+	panel.css("visibility", "visible");
+}
+
+function showCardImageAndInfo(id) {
+
+	showCardImage(id);
+
 	const header = $('.cardHeader');
 	const desc = $('.cardDesc');
 
@@ -426,6 +426,7 @@ function regenerateDeckPanel(){
             regenerateDeckPanel();
             return false;
 		}); 
+		entry.hover(()=>{showCardImageAndInfo(id)})
 
 	}
 	

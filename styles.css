@@ -53,10 +53,12 @@
 
 .selectedCardInfo{
 	max-width: 100%
-	min-height:50px;
+	padding: 2px;
 	background-color:lightgray;
 
 	word-wrap:normal;
+	font-family:  "Yu Gothic", "MS Gothic";
+	font-size: 14px;
 }
 .cardHeader{
 	min-height:20px;
@@ -67,7 +69,7 @@
 }
 .cardDesc{
 	width:100%;
-	min-height:135px;
+	min-height:176px;
 	white-space: pre-line;
 }
 
