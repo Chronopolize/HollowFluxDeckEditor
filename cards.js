@@ -5,8 +5,7 @@ $(document).ready(function() {
 	addCards();
 	setupSearchForm()
 	applySearchFilters()
-
- 	deck = new Deck()  // the currently loaded deck
+ 	
 	deck.incrementCard(1);
 	deck.incrementCard(150);
 	deck.incrementCard(150);
@@ -18,10 +17,23 @@ function addCards() {
 
 	let dest = $('.cardListingPanel').first();
 	for (i = 1; i <= repoCardCount; i++) {
+		const id = i;
+
 		let img = $(`<img class="card-image" cardid="${i}" src="./img/cards/${i}.jpg"></img>`)
 
 		img.hover(onHover, null);
 		dest.append(img);
+
+		img.click((event) => {
+			deck.incrementCard(id);
+			regenerateDeckPanel();
+		})
+
+		img.bind('contextmenu', function(e) {
+            deck.decrementCard(id);
+            regenerateDeckPanel();
+            return false;
+		}); 
 
 		function onHover() {
 
@@ -345,7 +357,6 @@ function equalsCI(a, b) {
 
 
 const MAX_CARD_MULTIPLE = 3;
-let deck;
 
 class Deck {
 	cards = [];   //map of id to number
@@ -383,6 +394,7 @@ class Deck {
 		cards.push(new CardMultiple(id))
 	}
 }
+let deck = new Deck();
 
 class CardMultiple{
 	constructor(id){
@@ -394,8 +406,6 @@ class CardMultiple{
 }
 
 function regenerateDeckPanel(){
-
-
 	let dest = $(".deckCardsPanel");
 	dest.html('');
 
@@ -403,6 +413,20 @@ function regenerateDeckPanel(){
 		let card = cardRepo[cardMultiple.id];
 		let entry = $(`<div id="deckPanelCardEntry">${card.name} x${cardMultiple.copies}</div>`)
 		dest.append(entry);
+
+
+		const id = cardMultiple.id;
+		entry.click((event) => {
+			deck.incrementCard(id);
+			regenerateDeckPanel();
+		})
+
+		entry.bind('contextmenu', function(e) {
+            deck.decrementCard(id);
+            regenerateDeckPanel();
+            return false;
+		}); 
+
 	}
 	
 }
