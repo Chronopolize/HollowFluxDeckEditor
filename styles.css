@@ -96,3 +96,7 @@
 .deckTextHeader{
 	font-weight: bold
 }
+
+.deckPanelCardEntry:hover{
+	background-color:orange;
+}

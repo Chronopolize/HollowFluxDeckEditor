@@ -357,16 +357,18 @@ function equalsCI(a, b) {
 
 
 const MAX_CARD_MULTIPLE = 3;
+const MAIN_DECK_MAX_SIZE = 30;
+const GUARD_DECK_MAX_SIZE = 10;
 
 class Deck {
-	main = [];   //map of id to number
+	main = []; 
 	guard = [];
 
 	sizeMain(){
-		return cards.length;
+		return this.main.reduce((total, card)=>{return total+card.copies}, 0);
 	}
 	sizeGuard(){
-		return guard.length;
+		return this.guard.reduce((total, card)=>{return total+card.copies}, 0);
 	}
 
 	incrementCardMain(id){
@@ -451,11 +453,11 @@ function regenerateDeckPanel(){
 	let dest = $(".deckCardsPanel");
 	dest.html('');
 
-	dest.append("<div class='deckTextHeader'>Main deck:</div>")
+	dest.append(`<div class='deckTextHeader'>Main deck (${deck.sizeMain()}/${MAIN_DECK_MAX_SIZE})</div>`)
 
 	for(cardMultiple of deck.main){
 		let card = cardRepo[cardMultiple.id];
-		let entry = $(`<div id="deckPanelCardEntry">${card.name} x${cardMultiple.copies}</div>`)
+		let entry = $(`<div class="deckPanelCardEntry">${card.name} x${cardMultiple.copies}</div>`)
 		dest.append(entry);
 
 
@@ -473,11 +475,11 @@ function regenerateDeckPanel(){
 		entry.hover(()=>{showCardImageAndInfo(id)})
 	}
 
-	dest.append("<div class='deckTextHeader'>Guard deck:</div>")
+	dest.append(`<div class='deckTextHeader'>Guard deck (${deck.sizeGuard()}/${GUARD_DECK_MAX_SIZE})</div>`)
 
 	for(cardMultiple of deck.guard){
 		let card = cardRepo[cardMultiple.id];
-		let entry = $(`<div id="deckPanelCardEntry">${card.name} x${cardMultiple.copies}</div>`)
+		let entry = $(`<div class="deckPanelCardEntry">${card.name} x${cardMultiple.copies}</div>`)
 		dest.append(entry);
 
 
