@@ -71,7 +71,7 @@
 	padding-left: 4px;
 	padding-right: 4px;
 	width:100%;
-	min-height:164px;
+	min-height:176px;
 	white-space: pre-line;
 }
 
@@ -91,4 +91,8 @@
 
 .descriptionKeyword{
 	font-weight: bold;
+}
+
+.deckTextHeader{
+	font-weight: bold
 }

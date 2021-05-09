@@ -6,9 +6,9 @@ $(document).ready(function() {
 	setupSearchForm()
 	applySearchFilters()
  	
-	deck.incrementCard(1);
-	deck.incrementCard(150);
-	deck.incrementCard(150);
+	deck.incrementCardMain(1);
+	deck.incrementCardMain(150);
+	deck.incrementCardMain(150);
 	regenerateDeckPanel()
 });
 
@@ -25,12 +25,12 @@ function addCards() {
 		dest.append(img);
 
 		img.click((event) => {
-			deck.incrementCard(id);
+			event.shiftKey ? deck.incrementCardGuard(id) : deck.incrementCardMain(id);
 			regenerateDeckPanel();
+			
 		})
-
 		img.bind('contextmenu', function(e) {
-            deck.decrementCard(id);
+			event.shiftKey ? deck.decrementCardGuard(id) :  deck.decrementCardMain(id);
             regenerateDeckPanel();
             return false;
 		}); 
@@ -359,32 +359,57 @@ function equalsCI(a, b) {
 const MAX_CARD_MULTIPLE = 3;
 
 class Deck {
-	cards = [];   //map of id to number
+	main = [];   //map of id to number
+	guard = [];
 
-	size(){
+	sizeMain(){
 		return cards.length;
 	}
-	incrementCard(id){
-		let card = this.cards.find(c =>  {
+	sizeGuard(){
+		return guard.length;
+	}
+
+	incrementCardMain(id){
+		let card = this.main.find(c =>  {
 			return c.id === id
 		})
-
+		if(this.pCopiesInDeck(id)>=3) return;
 		if(card){
-			if(card.copies<MAX_CARD_MULTIPLE){
-				card.copies += 1;
-			}
+			card.copies += 1;
 		}else{
-			this.cards.push(new CardMultiple(id));
+			this.main.push(new CardMultiple(id));
 		}
 	}
-	decrementCard(id){
-		let card = this.cards.find(c =>  {
+	incrementCardGuard(id){
+		let card = this.guard.find(c =>  {
+			return c.id === id
+		})
+		if(this.pCopiesInDeck(id)>=3) return;
+		if(card){
+			card.copies += 1;
+		}else{
+			this.guard.push(new CardMultiple(id));
+		}
+	}
+	decrementCardMain(id){
+		let card = this.main.find(c =>  {
 			return c.id === id
 		})
 		if(card){
 			card.copies -=1;
 			if(card.copies<=0){
-				this.cards = this.cards.filter(c => c !== card);
+				this.main = this.main.filter(c => c !== card);
+			}
+		}
+	}
+	decrementCardGuard(id){
+		let card = this.guard.find(c =>  {
+			return c.id === id
+		})
+		if(card){
+			card.copies -=1;
+			if(card.copies<=0){
+				this.guard = this.guard.filter(c => c !== card);
 			}
 		}
 	}
@@ -392,6 +417,23 @@ class Deck {
 	//p for private methods :/
 	pAddCard(id){
 		cards.push(new CardMultiple(id))
+	}
+	// returns copies of a card in main + guard
+	pCopiesInDeck(id){
+		let copies = 0;
+		let card = this.main.find(c =>  {
+			return c.id === id
+		})
+		if(card){
+			copies += card.copies;
+		}
+		card = this.guard.find(c =>  {
+			return c.id === id
+		})
+		if(card){
+			copies += card.copies;
+		}
+		return copies;
 	}
 }
 let deck = new Deck();
@@ -409,7 +451,9 @@ function regenerateDeckPanel(){
 	let dest = $(".deckCardsPanel");
 	dest.html('');
 
-	for(cardMultiple of deck.cards){
+	dest.append("<div class='deckTextHeader'>Main deck:</div>")
+
+	for(cardMultiple of deck.main){
 		let card = cardRepo[cardMultiple.id];
 		let entry = $(`<div id="deckPanelCardEntry">${card.name} x${cardMultiple.copies}</div>`)
 		dest.append(entry);
@@ -417,17 +461,37 @@ function regenerateDeckPanel(){
 
 		const id = cardMultiple.id;
 		entry.click((event) => {
-			deck.incrementCard(id);
+			deck.incrementCardMain(id);
 			regenerateDeckPanel();
 		})
 
 		entry.bind('contextmenu', function(e) {
-            deck.decrementCard(id);
+            deck.decrementCardMain(id);
             regenerateDeckPanel();
             return false;
 		}); 
 		entry.hover(()=>{showCardImageAndInfo(id)})
+	}
 
+	dest.append("<div class='deckTextHeader'>Guard deck:</div>")
+
+	for(cardMultiple of deck.guard){
+		let card = cardRepo[cardMultiple.id];
+		let entry = $(`<div id="deckPanelCardEntry">${card.name} x${cardMultiple.copies}</div>`)
+		dest.append(entry);
+
+
+		const id = cardMultiple.id;
+		entry.click((event) => {
+			deck.incrementCardGuard(id);
+			regenerateDeckPanel();
+		})
+		entry.bind('contextmenu', function(e) {
+            deck.decrementCardGuard(id);
+            regenerateDeckPanel();
+            return false;
+		}); 
+		entry.hover(()=>{showCardImageAndInfo(id)})
 	}
 	
 }
