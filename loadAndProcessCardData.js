@@ -1,4 +1,4 @@
-function preProcessCardRepo() {
+function loadAndProcessCardData() {
 	//Init undefined cards
 	for (let id = 1; id <= repoCardCount; id++) {
 		if (!cardRepo[id]) {

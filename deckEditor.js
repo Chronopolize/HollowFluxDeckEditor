@@ -1,5 +1,5 @@
 $(document).ready(function() {
-	preProcessCardRepo()
+	loadAndProcessCardData();
 
 	addCardElements();
 	setupSearchForm()
@@ -9,6 +9,7 @@ $(document).ready(function() {
 	deck.incrementCardMain(150);
 	deck.incrementCardMain(150);
 	regenerateDeckPanel()
+	// ouputSetXML() // for developer use
 });
 
 const repoCardCount = 150;
