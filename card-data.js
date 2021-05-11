@@ -1101,11 +1101,11 @@ const cardRepo = [
  },
  {
    "id": 123,
-   "type": "",
+   "type": "None",
    "cost": 8,
    "name": "剣閃神姫・万象切断之理",
    "attributes": "奥義・神格",
-   "desc": "Choose an attribute. Remove all enemy characters with that atribute from the game. Remove this card from the game.",
+   "desc": "Choose an attribute. Remove all enemy characters with that attribute from the game. Remove this card from the game.",
    "power": "/"
  },
  {
@@ -1119,7 +1119,7 @@ const cardRepo = [
  },
  {
    "id": 125,
-   "type": "",
+   "type": "C",
    "cost": 3,
    "name": "四条五花",
    "attributes": "人間",
@@ -1128,7 +1128,7 @@ const cardRepo = [
  },
  {
    "id": 126,
-   "type": "",
+   "type": "C",
    "cost": 4,
    "name": "時の管理者　アイオン",
    "attributes": "電子精神",
@@ -1137,7 +1137,7 @@ const cardRepo = [
  },
  {
    "id": 127,
-   "type": "",
+   "type": "C",
    "cost": 5,
    "name": "命を呪う者 まつつ結姫神",
    "attributes": "神格",
@@ -1146,7 +1146,7 @@ const cardRepo = [
  },
  {
    "id": 128,
-   "type": "",
+   "type": "C",
    "cost": 6,
    "name": "魔王習い 星生",
    "attributes": "人間発現者",
@@ -1155,7 +1155,7 @@ const cardRepo = [
  },
  {
    "id": 129,
-   "type": "",
+   "type": "C",
    "cost": 8,
    "name": "一意零",
    "attributes": "人間・特異能力",
@@ -1227,7 +1227,7 @@ const cardRepo = [
  },
  {
    "id": 137,
-   "type": "C/Set",
+   "type": "Character/Set",
    "cost": 7,
    "name": "エルミリアークラメール",
    "attributes": "特異存在・魔術",

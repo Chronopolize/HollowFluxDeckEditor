@@ -19,9 +19,9 @@ function preProcessCardRepo() {
 		}
 
 		if (!card.type) {
-			card.type = "";
-		}
-		switch (card.type.toUpperCase()) {
+			card.type = "Unknown";
+		}else{
+			switch (card.type.toUpperCase()) {
 			case "C":
 				card.type = "Character"
 				break;
@@ -32,8 +32,10 @@ function preProcessCardRepo() {
 				card.type = "Set"
 				break;
 			default:
-				card.type = "Unknown"
+				// leave as is
+			}
 		}
+		
 		if(card.desc === null || typeof card.desc == undefined){
 			card.desc = "";
 		}

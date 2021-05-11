@@ -1,7 +1,9 @@
 const costFilterValues = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-const typeFilterValues = ["Character", "Command", "Set", "Unknown"];
+const cardTypes = ["Character", "Command", "Set"];
+const typeSpecialOptions = ["Other", "Unknown"];
 const attributeTypes = ["人間", "発現者", "魔術", "理霊", "亜人", "始原織", "特異存在", "特異能力", "装備"];
 const attributeSpecialOptions = ["Other", "None", "Unknown"];
+
 
 
 function setupSearchForm() {
@@ -15,7 +17,11 @@ function setupSearchForm() {
 
 
 	//Type filter
-	for (value of typeFilterValues) {
+
+	let typeCheckboxNames = [...cardTypes];
+	typeCheckboxNames.push(...typeSpecialOptions);
+
+	for (value of typeCheckboxNames) {
 		const checkbox = $(`<input type="checkbox" class="typeFilterCheckbox" value="${value}">`)
 		$(".typeFilterValues").append(value).append(checkbox).append(" ");
 		checkbox.change(function() {
@@ -130,12 +136,28 @@ function descriptionMatches(card) {
 
 function typeMatches(card) {
 	let matches = false;
-	for (value of typeFilterValues) {
+	for (value of cardTypes) {
 		checkbox = $(`.typeFilterCheckbox[value="${value}"]`)
 		if (checkbox) {
 			if (checkbox.prop("checked") && equalsCI(card.type, value)) {
 				matches = true;
 			}
+		}
+	}
+
+	checkbox = $(`.typeFilterCheckbox[value="Other"]`);
+	if (checkbox.prop("checked")) {
+		if (!equalsCI(card.type, "Unknown")) {
+			if (!cardTypes.some(a => equalsCI(a, card.type))) {
+			return true;
+			}
+		}
+	}
+
+	checkbox = $(`.typeFilterCheckbox[value="Unknown"]`);
+	if (checkbox.prop("checked")) {
+		if (equalsCI(card.type, "Unknown")) {
+			return true;
 		}
 	}
 	return matches;
