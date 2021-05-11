@@ -1,6 +1,15 @@
 
 
 
+function escapeXML(str){
+	return str.replace(/&/g, '&amp;')
+               .replace(/</g, '&lt;')
+               .replace(/>/g, '&gt;')
+}
+function escapeNameChars(str){
+	return str.replaceAll(/[「」]/g, "”")
+}
+
 
 function ouputSetXML(){
 	let cardsXML = "";
@@ -8,9 +17,10 @@ function ouputSetXML(){
 for (let id = 1; id <= repoCardCount; id++){
 	let card = cardRepo[id];
 
+	// change title characters which Cockatrice can't handle
 	let cardXML = `<card>
-			<name>${card.name}</name>
-			<text>${card.desc}</text>
+			<name>${escapeNameChars(card.name)}</name>
+			<text>${escapeXML(card.desc)}</text>
 			<prop>
 				<type>${card.type} ― ${card.attributes.join(", ")}</type>
 				<maintype>${card.type}</maintype>
@@ -21,15 +31,6 @@ for (let id = 1; id <= repoCardCount; id++){
 		</card>`
 	cardsXML+=cardXML;
 }
-
-
-
-
-
-
-
-
-
 
 
 let setXML = `<?xml version="1.0" encoding="UTF-8"?>
@@ -49,3 +50,54 @@ let setXML = `<?xml version="1.0" encoding="UTF-8"?>
 
 console.log(setXML)
 }
+
+function cardMultipleToCockatriceFormat(cardMul){
+	let card = cardRepo[cardMul.id]
+	return `
+	<card number="${cardMul.copies}" name="${escapeNameChars(card.name)}"/>`;
+}
+
+function exportDeckAsCockatriceFormat(){
+	let mainDeckXML="";
+	let guardDeckXML = "";
+
+	for(card of deck.main){
+		mainDeckXML += cardMultipleToCockatriceFormat(card)
+	}
+	for(card of deck.guard){
+		guardDeckXML += cardMultipleToCockatriceFormat(card)
+	}
+
+
+	return `<?xml version="1.0" encoding="UTF-8"?>
+<cockatrice_deck version="1">
+    <deckname></deckname>
+    <comments></comments>
+    <zone name="main">${mainDeckXML}
+    </zone>
+    <zone name="side">${guardDeckXML}
+    </zone>
+</cockatrice_deck>`
+}
+
+
+function setupDeckSaveLoadButtons(){
+	$("#deckSave").click(()=>{{
+	    downloadToFile(exportDeckAsCockatriceFormat(), 'deck.cod', 'text/plain');
+	}});
+}
+
+const downloadToFile = (content, filename, contentType) => {
+  const a = document.createElement('a');
+  const file = new Blob([content], {type: contentType});
+  
+  a.href= URL.createObjectURL(file);
+  a.download = filename;
+  a.click();
+
+	URL.revokeObjectURL(a.href);
+};
+
+
+
+  

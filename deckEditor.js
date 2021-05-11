@@ -3,14 +3,13 @@ $(document).ready(function() {
 
 	addCardElements();
 	setupSearchForm()
+	setupDeckSaveLoadButtons();
 	applySearchFilters()
  	
-	deck.incrementCardMain(1);
-	deck.incrementCardMain(150);
-	deck.incrementCardMain(150);
 	regenerateDeckPanel()
 	// ouputSetXML() // for developer use
 });
+
 
 const repoCardCount = 150;
 function addCardElements() {

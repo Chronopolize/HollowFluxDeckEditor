@@ -1112,7 +1112,7 @@ const cardRepo = [
    "id": 124,
    "type": "C",
    "cost": 2,
-   "name": "\"魔族\"",
+   "name": "”魔族”",
    "attributes": "人間",
    "desc": "Whenever this character attacks or blocks, set the top card of your deck face down onto this as  \"Malignant tumor: -1000 Cost 1\".\nDT[2]: Destroy target character with power 2500 or less.",
    "power": "500"
@@ -1186,7 +1186,7 @@ const cardRepo = [
    "cost": 6,
    "name": "イグニッション、ヘリッシュ・ガンバレル",
    "attributes": "奥義・始原識",
-   "desc": "[Secret Arts: インフィル]\nDeal 10000 damage to all non-human cards who do not have 「ルア」 in their name\nDT[3]: Deal 4000 damage to target character.",
+   "desc": "[Secret Arts: インフィル]\nDeal 10000 damage to all non-human cards who do not have \"ルア\"  in their name\nDT[3]: Deal 4000 damage to target character.",
    "power": "/"
  },
  {
@@ -1319,7 +1319,7 @@ const cardRepo = [
    "id": 147,
    "type": "C",
    "cost": 12,
-   "name": "「対象」丙種",
+   "name": "「対象」 丙種",
    "attributes": "特異存在",
    "desc": "When playing this card, subtract X from its cost, where X is the number of cards removed from the game, to a minimum of 5.\nFF: Look at target player's hand. You may choose a card from their hand and remove it from the game.\nThis character cannot be targeted by command cards, set cards, or character abilities.",
    "power": "7500"
