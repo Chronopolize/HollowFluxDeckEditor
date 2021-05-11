@@ -166,7 +166,7 @@ const cardRepo = [
  {
    "id": 19,
    "type": "S",
-   "cost": 3,
+   "cost": 2,
    "name": "鋼鉄の長剣",
    "attributes": "装備",
    "desc": "On set: Draw a card.\nDT: Give target character +2000 until EoT",
@@ -175,8 +175,8 @@ const cardRepo = [
  {
    "id": 20,
    "type": "S",
-   "cost": 3,
-   "name": "炎熱の聖健",
+   "cost": 2,
+   "name": "炎熱の聖剣",
    "attributes": "装備",
    "desc": "On set: You may deal 2000 damage to target character.\nWhen the set character attacks, you may deal 1000 damage to target character",
    "power": "+1000"
@@ -592,7 +592,7 @@ const cardRepo = [
    "cost": 5,
    "name": "アマリア・シュロスシュタット",
    "attributes": "人間・魔術",
-   "desc": "Piercing\nWhenever an opponent would put a card from their guard deck to  their damage field, it goes to their trash instead. (The card's DT cannot be used)\n[Carnage 2]: This gains Sunder until EoT.\n[Carange 3]: Deal 1 damage to target player.\n",
+   "desc": "Piercing\nWhenever an opponent would put a card from their guard deck to  their damage field, it goes to their trash instead. (The card's DT cannot be used)\n[Carnage 2]: This gains Sunder until EoT.\n[Carnage 3]: Deal 1 damage to target player.",
    "power": "5500"
  },
  {
@@ -815,7 +815,7 @@ const cardRepo = [
    "id": 91,
    "type": "C",
    "cost": 5,
-   "name": "王立アカデミーの学徒 インフィル",
+   "name": "王立アカデミーの学徒　インフィル",
    "attributes": "人間・干渉者",
    "desc": "Whenever you play a character card, reduce it's cost by X, to a minimum of, where X is the number of allied set cards in play.\nWhenever an allied set card becomes attached to a character, draw a card. You may also deal 3000 damage to target character. (If multiple cards become attached at once, this ability only triggers once)",
    "power": "4000"
@@ -1319,7 +1319,7 @@ const cardRepo = [
    "id": 147,
    "type": "C",
    "cost": 12,
-   "name": "「対象」 丙種",
+   "name": "「対象」丙種",
    "attributes": "特異存在",
    "desc": "When playing this card, subtract X from its cost, where X is the number of cards removed from the game, to a minimum of 5.\nFF: Look at target player's hand. You may choose a card from their hand and remove it from the game.\nThis character cannot be targeted by command cards, set cards, or character abilities.",
    "power": "7500"

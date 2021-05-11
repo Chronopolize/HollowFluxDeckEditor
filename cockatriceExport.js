@@ -98,6 +98,14 @@ const downloadToFile = (content, filename, contentType) => {
 	URL.revokeObjectURL(a.href);
 };
 
+function outputCockatriceImgNames(){
+	let names = "";
+	for (let id = 1; id <= repoCardCount; id++){
+		let card = cardRepo[id];
+		names += escapeNameChars(card.name) + "\n";
+	}
+	console.log(names);
+}
 
 
   
