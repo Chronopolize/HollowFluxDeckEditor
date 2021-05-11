@@ -16,11 +16,19 @@ class Deck {
 		return this.guard.reduce((total, card)=>{return total+card.copies}, 0);
 	}
 
+	clear(){
+		this.main.length = 0;
+		this.guard.length = 0;
+	}
+
 	incrementCardMain(id){
 		let card = this.main.find(c =>  {
 			return c.id === id
 		})
-		if(this.pCopiesInDeck(id)>=3) return;
+		if(this.pCopiesInDeck(id)>=3){
+			console.log(`Could not add card ${id} to main deck due to multiples limit`)	
+			return;
+		} 
 		if(card){
 			card.copies += 1;
 		}else{
@@ -31,7 +39,10 @@ class Deck {
 		let card = this.guard.find(c =>  {
 			return c.id === id
 		})
-		if(this.pCopiesInDeck(id)>=3) return;
+		if(this.pCopiesInDeck(id)>=3) {
+			console.log(`Could not add card ${id} due to guard deck due to multiples limit`)
+			return;
+		}
 		if(card){
 			card.copies += 1;
 		}else{
