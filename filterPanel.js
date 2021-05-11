@@ -1,6 +1,6 @@
 const costFilterValues = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 const typeFilterValues = ["Character", "Command", "Set", "Unknown"];
-const attributeTypes = ["人間", "発現者", "魔術", "論霊", "始原織", "特異存在", "特異能力", "装備"];
+const attributeTypes = ["人間", "発現者", "魔術", "理霊", "亜人", "始原織", "特異存在", "特異能力", "装備"];
 const attributeSpecialOptions = ["Other", "None", "Unknown"];
 
 
@@ -71,12 +71,12 @@ function costFilterDeselectAll() {
 function applySearchFilters() {
 
 	let matchCount = 0;
+	let firstMatchId;
 
 	for (let id = 1; id <= repoCardCount; id++) {
 		const card = cardRepo[id];
 		let matches = true;
 		
-
 		matches &= nameMatches(card);
 
 		matches &= descriptionMatches(card);
@@ -90,10 +90,15 @@ function applySearchFilters() {
 		if (matches) {
 			getCardElement(id).show();
 			matchCount += 1;
+			if(!firstMatchId)
+				firstMatchId = id;				
 		} else {
 			getCardElement(id).hide();
 		}
-		$(".matchCount").text(matchCount + " cards found")
+	}
+	$(".matchCount").text(matchCount + " cards found")
+	if(matchCount>0){
+		showCardImageAndInfo(firstMatchId);
 	}
 }
 
