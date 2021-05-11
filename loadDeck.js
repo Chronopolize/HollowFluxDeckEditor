@@ -55,7 +55,7 @@ function parseStringAsXML(string){
 	guardCards.each(function(){
 		name = $(this).attr("name");
 		let copies = parseInt($(this).attr("number"));
-		console.log(name, copies);
+		// console.log(name, copies);
 
 		let card = getCardFromCockatriceName(name);
 		if(!card){
