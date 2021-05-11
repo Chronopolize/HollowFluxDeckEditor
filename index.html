@@ -39,9 +39,13 @@
 			</div>
 		</div>
 		<div class="deckPanel">
-			<div class="deckSaveLoadPanel"><button type="button" id="deckSave">Save</button><button type="button" id="deckLoad">Load</button></div>
-			<i>Main deck: LR click<br>
-			Guard deck: Shift+LR click</i>
+			<div class="deckSaveLoadPanel">
+			<button type="button" id="deckSave">Save</button>
+			<button id="deckLoad" onclick="document.getElementById('getDeckFile').click()">Load</button>
+			<input type='file' id="getDeckFile" accept=".cod, .txt" style="display:none">
+		</div>
+		<i>Main deck: LR click<br>
+		Guard deck: Shift+LR click</i>
 			<div class="deckCardsPanel"></div>
 		</div>
 	</div>
@@ -55,6 +59,8 @@
 <script type="text/javascript" src="./deckPanel.js"></script>
 <script type="text/javascript" src="./deckEditor.js"></script>
 
+
+<script type="text/javascript" src="./loadDeck.js"></script>
 <script type="text/javascript" src="./cockatriceExport.js"></script>
 
 </html>

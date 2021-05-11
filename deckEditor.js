@@ -7,7 +7,7 @@ $(document).ready(function() {
 	applySearchFilters()
  	
 	regenerateDeckPanel()
-	ouputSetXML() // for developer use
+	// ouputSetXML() // for developer use
 	// outputCockatriceImgNames() // for developer use
 });
 
