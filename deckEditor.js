@@ -15,11 +15,27 @@ $(document).ready(function() {
 const repoCardCount = 150;
 function addCardElements() {
 
-	let dest = $('.cardListingPanel').first();
-	for (i = 1; i <= repoCardCount; i++) {
-		const id = i;
+	let sortedCards = [...cardRepo];
+	sortedCards.splice(0, 1);
 
-		let img = $(`<img class="card-image" cardid="${i}" src="./img/cards/${i}.jpg"></img>`)
+	sortedCards.sort((a, b)=> {
+
+		if(a.cost!=b.cost){
+			return a.cost-b.cost;
+		}else if(a.type.localeCompare(b.type)!=0){
+			return a.type.localeCompare(b.type)
+		}else{
+			return a.id-b.id;
+		}
+	});
+
+
+
+	let dest = $('.cardListingPanel').first();
+	for (card of sortedCards) {
+		const id = card.id;
+
+		let img = $(`<img class="card-image" cardid="${id}" src="./img/cards/${id}.jpg"></img>`)
 
 		img.hover(onHover, null);
 		dest.append(img);
