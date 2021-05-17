@@ -108,6 +108,11 @@
 .deckPanelCardEntry:hover{
 	background-color:orange;
 }
+
+.deckPanelCardEntryName{
+	min-width:250px;
+}
+
 .deckPanel button{
 	margin-left:5px;
 }

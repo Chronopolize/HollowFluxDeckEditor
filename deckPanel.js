@@ -142,14 +142,21 @@ function regenerateDeckPanel(){
 
 	for(cardMultiple of sortedMain){
 		let card = cardRepo[cardMultiple.id];
-		let entry = $(`<tr class="deckPanelCardEntry"><td>${card.name} x${cardMultiple.copies}</td><td>${card.cost}</th><td>${getCardTypeShortForm(card)}</td></tr>`)
+		let entry = $(`<tr class="deckPanelCardEntry"><td class="deckPanelCardEntryName">${card.name} x${cardMultiple.copies}</td><td>${card.cost}</th><td>${getCardTypeShortForm(card)}</td></tr>`)
 		dest.append(entry);
 
 
 		const id = cardMultiple.id;
-		entry.click((event) => {
+		entry.click((e) => {
+
+			if(e.altKey){ // swap card to guard deck
+				deck.decrementCardMain(id);
+				deck.incrementCardGuard(id);
+				regenerateDeckPanel();
+			}else{
 			deck.incrementCardMain(id);
 			regenerateDeckPanel();
+			}
 		})
 
 		entry.bind('contextmenu', function(e) {
@@ -182,14 +189,20 @@ function regenerateDeckPanel(){
 
 	for(cardMultiple of sortedGuard){
 		let card = cardRepo[cardMultiple.id];
-		let entry = $(`<tr class="deckPanelCardEntry"><td>${card.name} x${cardMultiple.copies}</td><td>${card.cost}</th><td>${getCardTypeShortForm(card)}</td></tr>`)
+		let entry = $(`<tr class="deckPanelCardEntry"><td class="deckPanelCardEntryName">${card.name} x${cardMultiple.copies}</td><td>${card.cost}</th><td>${getCardTypeShortForm(card)}</td></tr>`)
 		dest.append(entry);
 
 
 		const id = cardMultiple.id;
-		entry.click((event) => {
+		entry.click((e) => {
+			if(e.altKey){ // swap card to main deck
+				deck.decrementCardGuard(id);
+				deck.incrementCardMain(id);
+				regenerateDeckPanel();
+			}else{
 			deck.incrementCardGuard(id);
 			regenerateDeckPanel();
+			}
 		})
 		entry.bind('contextmenu', function(e) {
             deck.decrementCardGuard(id);
