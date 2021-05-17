@@ -56,6 +56,8 @@
 	word-wrap:normal;
 	font-family:  "Yu Gothic", "MS Gothic";
 	font-size: 14px;
+	height:246px;
+
 }
 .cardHeader{
 	padding: 4px;
@@ -97,9 +99,27 @@
 	font-weight: bold
 }
 
+.deckPanelCardEntry{
+	font-weight: normal;
+	text-align: left;
+	font-size: 15px;
+}
+
 .deckPanelCardEntry:hover{
 	background-color:orange;
 }
 .deckPanel button{
 	margin-left:5px;
+}
+
+td{
+	padding-top: 2px;
+	padding-bottom: 2px;
+  	padding-right: 5px;
+  	padding-left: 5px
+}
+table{
+}
+th, td{
+	border: 0.3px solid darkgray;
 }

@@ -105,15 +105,44 @@ class CardMultiple{
 	id;
 }
 
+function getCardTypeShortForm(card){
+	switch(card.type){
+		case "Character":
+		return "C";
+		case "Command":
+		return "Cmd";
+		case "Set":
+		return "S";
+		default:
+		return card.type.substring(0,4);
+	}
+
+}
+
 function regenerateDeckPanel(){
 	let dest = $(".deckCardsPanel");
 	dest.html('');
 
 	dest.append(`<div class='deckTextHeader'>Main deck (${deck.sizeMain()}/${MAIN_DECK_MAX_SIZE})</div>`)
 
-	for(cardMultiple of deck.main){
+	dest.append(`<table>`);
+
+	let sortedMain = [...deck.main]
+	sortedMain.sort((mulA, mulB)=> {
+
+		let a = cardRepo[mulA.id];
+		let b = cardRepo[mulB.id];
+
+		if(a.type.localeCompare(b.type)!=0){
+			return a.type.localeCompare(b.type)
+		}else{
+			return a.cost-b.cost;
+		}
+	});
+
+	for(cardMultiple of sortedMain){
 		let card = cardRepo[cardMultiple.id];
-		let entry = $(`<div class="deckPanelCardEntry">${card.name} x${cardMultiple.copies}</div>`)
+		let entry = $(`<tr class="deckPanelCardEntry"><td>${card.name} x${cardMultiple.copies}</td><td>${card.cost}</th><td>${getCardTypeShortForm(card)}</td></tr>`)
 		dest.append(entry);
 
 
@@ -130,12 +159,30 @@ function regenerateDeckPanel(){
 		}); 
 		entry.hover(()=>{showCardImageAndInfo(id)})
 	}
+	dest.append(`</table>`);
 
 	dest.append(`<div class='deckTextHeader'>Guard deck (${deck.sizeGuard()}/${GUARD_DECK_MAX_SIZE})</div>`)
 
-	for(cardMultiple of deck.guard){
+
+	dest.append(`<table>`);
+
+	let sortedGuard = [...deck.guard]
+	sortedGuard.sort((mulA, mulB)=> {
+
+		let a = cardRepo[mulA.id];
+		let b = cardRepo[mulB.id];
+
+		if(a.type.localeCompare(b.type)!=0){
+			return a.type.localeCompare(b.type)
+		}else{
+			return a.cost-b.cost;
+		}
+	});
+
+
+	for(cardMultiple of sortedGuard){
 		let card = cardRepo[cardMultiple.id];
-		let entry = $(`<div class="deckPanelCardEntry">${card.name} x${cardMultiple.copies}</div>`)
+		let entry = $(`<tr class="deckPanelCardEntry"><td>${card.name} x${cardMultiple.copies}</td><td>${card.cost}</th><td>${getCardTypeShortForm(card)}</td></tr>`)
 		dest.append(entry);
 
 
@@ -151,5 +198,6 @@ function regenerateDeckPanel(){
 		}); 
 		entry.hover(()=>{showCardImageAndInfo(id)})
 	}
+	dest.append(`</table>`);
 	
 }
