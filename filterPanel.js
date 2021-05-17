@@ -1,4 +1,4 @@
-const costFilterValues = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+const costFilterValues = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 const cardTypes = ["Character", "Command", "Set"];
 const typeSpecialOptions = ["Other", "Unknown"];
 const attributeTypes = ["人間", "発現者", "魔術", "理霊", "亜人", "始原織", "特異存在", "特異能力", "装備"];
@@ -53,6 +53,12 @@ function setupSearchForm() {
 		});
 	}
 
+	const checkbox = $(`<input type="checkbox" class="costFilterCheckbox costFilterTenOrMore">`)
+	$(".costFilterValues").append("10+").append(checkbox).append(" ");
+
+	$(".costFilterTenOrMore").click(function() {
+		applySearchFilters();
+	})
 	$(".costFilterSelectAll").click(function() {
 		costFilterSelectAll();
 		applySearchFilters();
@@ -203,11 +209,18 @@ function attributeMatches(card) {
 function costMatches(card) {
 	let matches = true;
 	for (value of costFilterValues) {
-		checkbox = $(`.costFilterCheckbox[value="${value}"]`)
+		let checkbox = $(`.costFilterCheckbox[value="${value}"]`)
 		if (checkbox) {
 			if (!checkbox.prop("checked") && card.cost == value) {
 				matches = false;
 			}
+		}
+	}
+
+	let checkbox = $(`.costFilterTenOrMore`)
+	if (checkbox) {
+		if (!checkbox.prop("checked") && card.cost >=10) {
+			matches = false;
 		}
 	}
 	return matches;
