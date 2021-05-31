@@ -1,7 +1,7 @@
 const costFilterValues = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 const cardTypes = ["Character", "Command", "Set"];
 const typeSpecialOptions = ["Other", "Unknown"];
-const attributeTypes = ["人間", "発現者", "魔術", "理霊", "亜人", "始原織", "特異存在", "特異能力", "装備"];
+const attributeTypes = ["人間", "発現者", "魔術", "理霊", "亜人", "始原識", "特異存在", "特異能力", "神格",　"奥義", "電子精神", "装備"];
 const attributeSpecialOptions = ["Other", "None", "Unknown"];
 
 

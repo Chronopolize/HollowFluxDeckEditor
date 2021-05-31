@@ -7,7 +7,7 @@ const cardRepo = [
    "cost": 1,
    "name": "王女の懐刀　リル",
    "attributes": "亜人",
-   "desc": "When this card attacks, take 1 damage, then you may loot 1.",
+   "desc": "When this card attacks, take 1 damage. Then, you may draw a card. If you do, put a card from your hand at the bottom of your deck.",
    "power": "1000"
  },
  {
@@ -745,7 +745,7 @@ const cardRepo = [
    "cost": 9,
    "name": "エレア：メタモルフォーゼ",
    "attributes": "人間・干渉者",
-   "desc": "(This card cannot be played, and can only enter the battlefield from your guard deck.)\nVigilance. Sunder.\nAs long as this character remains in play, all your characters get +3000, and all enemy characters get -3000.",
+   "desc": "(This card cannot be played, and can only enter the battlefield from your guard deck.)\nVigilance. Sunder.\nAs long as this character remains in play, all your characters get +3000, and all enemy characters get -3000.\nWhen this character would leave play, instead it put it in your guard deck.\n[1, suffer 1 damage] Until end of turn, this character is untargetable by command cards, set cards, and activated abilities.",
    "power": "7500"
  },
  {
@@ -835,7 +835,7 @@ const cardRepo = [
    "cost": 7,
    "name": "東岸定理",
    "attributes": "特異存在",
-   "desc": "FF: If this character entered play from outside of the game, look at the top 3 cards of your deck. You play place any number of them in your damage field.\nThis character cannot be blocked.\n[Carnage 1]: Remove this card from the game. At the end of the turn, ",
+   "desc": "FF: If this character entered play from outside of the game, look at the top 3 cards of your deck. You play place any number of them in your damage field.\nThis character cannot be blocked.\n[Carnage 1]: Remove this card from the game. At the end of the turn, you may put an allied 東岸定理 removed from game into play, active.",
    "power": "7000"
  },
  {
@@ -1141,7 +1141,7 @@ const cardRepo = [
    "cost": 5,
    "name": "命を呪う者 まつつ結姫神",
    "attributes": "神格",
-   "desc": "When another allied character is destroyed, put it on the top of it's owner's deck instead.\nAs long as you have 3 or more face up character cards in your damage field, this gets +2000 and Sunder.\n[Destroy another allied character]: Give -1000 to target character.",
+   "desc": "When another allied character is destroyed, put it on the top of it's owner's deck instead.\nAs long as you have 3 or more face up character cards in your damage field, this gets +2000 and Sunder.\n[Destroy another allied character]: Give -1000 to target character until EoT.",
    "power": "5000"
  },
  {
@@ -1149,7 +1149,7 @@ const cardRepo = [
    "type": "C",
    "cost": 6,
    "name": "魔王習い 星生",
-   "attributes": "人間発現者",
+   "attributes": "人間・発現者",
    "desc": "FF: Reveal a card from your guard deck. If it's a [発現者] card not named \"魔王習い 星生\" and cost equal or less than your current guard deck size, place it in play, slept. Otherwise, place it in your hand and untap up to X energy, where X is that card's cost.",
    "power": "4000"
  },
@@ -1159,7 +1159,7 @@ const cardRepo = [
    "cost": 8,
    "name": "一意零",
    "attributes": "人間・特異能力",
-   "desc": "FF and when destroyed: Target player exiles the top 3 cards of their main deck.\n[Carnage 2]: Destroy target character with X or less power. If succeeded, draw a card. X is total number of cards in exile.\nDT: Target player exiles the top card from their deck",
+   "desc": "FF and when destroyed: Target player exiles the top 3 cards of their main deck.\n[Carnage 2]: Destroy target character with X * 1000 or less power. If succeeded, draw a card. X is total number of cards in exile.\nDT: Target player exiles the top card from their deck",
    "power": "8500"
  },
  {
