@@ -2,8 +2,8 @@
 
 
 var tags = new Map();
-tags.set("aggro", [1, 2, 3, 4]);
-tags.set("defence", [5, 6, 7]);
+// tags.set("aggro", [1, 2, 3, 4]);
+// tags.set("defence", [5, 6, 7]);
 
 
 function setupTagPanelButtons(){
@@ -51,6 +51,15 @@ function addTagButton(){
 function addTag(tagName){
 	if(!tags.has(tagName) && tagName && tagName != "None"){
 		tags.set(tagName, []);
+		regenerateTagButtons();
+	}
+}
+/**
+	Puts a tag and all its contents. Use this over direct putting.
+*/
+function putTag(tagName, cardIds){
+	if(tagName && tagName != "None"){
+		tags.set(tagName, cardIds);
 		regenerateTagButtons();
 	}
 }
@@ -164,6 +173,8 @@ function tagMatches(card) {
 	}
 }
 
+///// Save tags to Disk
+
 function exportTagsAsJson(){
 	let str = JSON.stringify(mapToObj(tags))
 	console.log("Exported tags: ", str);
@@ -184,4 +195,27 @@ function mapToObj(inputMap) {
         obj[key] = value
     });
     return obj;
+}
+
+///// Load tags from file
+
+
+$("#getTagsFile").change((event)=>{
+	let file = event.target.files[0];
+	fileToString(file, (result)=>{
+		parseAndLoadJSONTags(result);
+	});
+});
+
+
+function parseAndLoadJSONTags(string){
+	console.log("parsed tags", string);
+	const obj = JSON.parse(string);
+
+	tags.clear();
+
+	for(tagName in obj){
+		putTag(tagName, obj[tagName]);
+	}
+
 }

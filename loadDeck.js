@@ -3,7 +3,7 @@
 $("#getDeckFile").change((event)=>{
 	let file = event.target.files[0];
 	fileToString(file, (result)=>{
-		parseStringAsXML(result);
+		parseAndLoadXMLDeck(result);
 	});
 });
 
@@ -19,7 +19,7 @@ function fileToString(file, callback=()=>{}){
 }
 
 let main;
-function parseStringAsXML(string){
+function parseAndLoadXMLDeck(string){
 	let xmlDoc = $.parseXML(string);
 	let $xml = $(xmlDoc);
 	console.log($xml);
