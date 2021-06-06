@@ -19,7 +19,7 @@
 .left{
 	float:left;
 	margin-right:350px;
-  	background-color: lightblue;
+  	background-color: #d8edf3;
  	overflow-x: scroll;
 
 }
@@ -42,6 +42,7 @@
 .newTagName{
 	width:130px;
 }
+
 
 .cardListingPanel{
 	/*background-color:beige;*/
@@ -97,6 +98,14 @@
 .card-image{
 	width: 100px;
 	vertical-align: top;
+}
+
+.hasSelectedTag{
+	/*box-sizing: border-box;
+	border: 5px solid #555;*/
+}
+.missingSelectedTag{
+	opacity: 0.5;
 }
 
 .descriptionKeyword{

@@ -15,9 +15,12 @@ $(document).ready(function() {
 	// outputCockatriceImgNames() // for developer use
 });
 
+const cardElements = []; // for other components to easily access
 
 const repoCardCount = 150;
 function addCardElements() {
+
+	cardElements.length = 0;
 
 	let sortedCards = [...cardRepo];
 	sortedCards.splice(0, 1);
@@ -40,6 +43,7 @@ function addCardElements() {
 		const id = card.id;
 
 		let img = $(`<img class="card-image" cardid="${id}" src="./img/cards/${id}.jpg"></img>`)
+		cardElements.push(img);
 
 		img.hover(onHover, null);
 		dest.append(img);
@@ -69,6 +73,16 @@ function addCardElements() {
 
 
 
+}
+
+function getCardElement(cardid) {
+	if (Number.isInteger(cardid) && cardid >= 0) {
+		let element = $(`img[cardid='${cardid}'`).first();
+		return element;
+	} else {
+		console(`${cardid} is not a valid card id`)
+		return null;
+	}
 }
 
 
