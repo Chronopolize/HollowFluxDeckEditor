@@ -10,10 +10,6 @@ function setupTagPanelButtons(){
 	$('.addNewTag').click(()=>{
 		addTagButton()
 	});
-	// $('input[type=radio][name=selected_tag]').change(function() {
-	// 	console.log("radio changed");
-	// 	updateCardElementsTaggedStatus();
-	// });
 }
 
 function regenerateTagButtons(){
@@ -29,10 +25,14 @@ function regenerateTagButtons(){
 		dest.append(tagButton);	
 		dest.append(name);
 		tagButton.change(function() {
-			console.log("radio changed");
 			updateCardElementsTaggedStatus();
+			applySearchFilters();
 		});
 	}
+
+	$(".filterCardsBySelectedTag").change(function(){
+		applySearchFilters();
+	});
 
 	$('input:radio[name=selected_tag]:nth(0)').attr('checked',true); //select "None"
 }
@@ -67,12 +67,12 @@ function toggleCardTag(tagName, cardId){
 		cardsWithTag.includes(cardId) ? removeElement(cardsWithTag, cardId) : cardsWithTag.push(cardId);
 	}
 	updateCardElementsTaggedStatus()
+	applySearchFilters();
 }
 
 function updateCardElementsTaggedStatus(){
 
 	let selectedTag = getSelectedTag();
-	console.log(selectedTag)
 	if(selectedTag && selectedTag !== "None"){
 		for(element of cardElements){
 			let cardId = parseInt(element.attr("cardid"));
@@ -142,4 +142,23 @@ function getTags(cardId){
 		}
 	}
 	return found;
+}
+
+/**
+	cardId: expects an int
+*/
+function cardHasTag(cardId, tagName){
+	if(tagName == "None"){
+		return true;
+	}
+	return tags.has(tagName) && tags.get(tagName).includes(cardId);
+}
+
+function tagMatches(card) {
+	let checkbox = $(`.filterCardsBySelectedTag`)
+	if(checkbox.prop("checked")){
+		return cardHasTag(card.id, getSelectedTag())
+	}else{
+		return true;
+	}
 }

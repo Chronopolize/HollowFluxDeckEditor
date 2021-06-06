@@ -67,7 +67,6 @@ function addCardElements() {
 
 		function onHover() {
 			let id = parseInt($(this).attr("cardid"));
-			console.log(typeof id);
 			showCardImageAndInfo(id);
 			updateHighlightedCardTagsText(id);
 		}

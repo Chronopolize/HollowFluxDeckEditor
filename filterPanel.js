@@ -99,6 +99,8 @@ function applySearchFilters() {
 
 		matches &= costMatches(card);
 
+		matches &= tagMatches(card);
+
 		if (matches) {
 			getCardElement(id).show();
 			matchCount += 1;
@@ -232,15 +234,5 @@ function equalsCI(a, b) {
 		return a.localeCompare(b, undefined, { sensitivity: 'accent' }) === 0
 	} else {
 		console.log("ciEquals: Expected type string string, got:", typeof a, typeof b);
-	}
-}
-
-
-function getCardElement(cardid) {
-	if (Number.isInteger(cardid) && cardid >= 0) {
-		let element = $(`img[cardid='${cardid}'`).first();
-		return element;
-	} else {
-		console(`${cardid} is not a valid card id`)
 	}
 }
