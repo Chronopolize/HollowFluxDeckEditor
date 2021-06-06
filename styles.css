@@ -39,6 +39,9 @@
 	min-height:60px;
 	background-color:#909090;
 }
+.newTagName{
+	width:130px;
+}
 
 .cardListingPanel{
 	/*background-color:beige;*/

@@ -4,7 +4,9 @@ $(document).ready(function() {
 	addCardElements();
 
 	setupSearchForm()
+	setupTagPanelButtons()
 	setupDeckSaveLoadButtons();
+
 	regenerateTagButtons()
 	applySearchFilters()
  	
@@ -43,9 +45,15 @@ function addCardElements() {
 		dest.append(img);
 
 		img.click((event) => {
-			event.shiftKey ? deck.incrementCardGuard(id) : deck.incrementCardMain(id);
-			regenerateDeckPanel();
-			
+			if(event.ctrlKey){
+				toggleCardTag(getSelectedTag(), id)
+			}else if(event.shiftKey){
+				deck.incrementCardGuard(id)
+				regenerateDeckPanel();
+			}else{
+				deck.incrementCardMain(id)
+				regenerateDeckPanel();
+			}
 		})
 		img.bind('contextmenu', function(e) {
 			event.shiftKey ? deck.decrementCardGuard(id) :  deck.decrementCardMain(id);

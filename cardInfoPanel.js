@@ -26,8 +26,6 @@ function showCardImageAndInfo(id) {
 }
 
 function clearCardInfo() {
-	const header = $('.cardHeader');
-	const desc = $('.cardDesc');
-	header.text('')
-	desc.text('')
+	$('.cardHeader').text('');
+	$('.cardDesc').text('');
 }
