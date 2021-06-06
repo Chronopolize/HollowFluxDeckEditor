@@ -2,8 +2,10 @@ $(document).ready(function() {
 	loadAndProcessCardData();
 
 	addCardElements();
+
 	setupSearchForm()
 	setupDeckSaveLoadButtons();
+	regenerateTagButtons()
 	applySearchFilters()
  	
 	regenerateDeckPanel()

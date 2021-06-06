@@ -32,9 +32,14 @@
 
 
 .cardSearchPanel{
-	min-height:200px;
+	min-height:140px;
 	background-color:gray;
 }
+.tagPanel{
+	min-height:60px;
+	background-color:#909090;
+}
+
 .cardListingPanel{
 	/*background-color:beige;*/
 }
