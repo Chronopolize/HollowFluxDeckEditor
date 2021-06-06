@@ -26,15 +26,15 @@
 			</div>
 		</div>
 		<div class="tagPanel">
-			<span class="tagValues"></span><input type="checkbox" class="filterCardsBySelectedTag">Filter cards by selected tag<br>
-			<input type="text" class="newTagName"><button type="button" class="addNewTag">New Tag</button>
-			<div><span class="highlightedCardTags"><br><br></span></div> <!-- br's are placeholder content-->
-
 			<div>
 				<button type="button" id="tagsSave">Save</button>
 				<button id="tagsLoad" onclick="document.getElementById('getTagsFile').click()">Load</button>
 				<input type='file' id="getTagsFile" accept=".tags, .json" style="display:none">
 			</div>
+			<span class="tagValues"></span><input type="checkbox" class="filterCardsBySelectedTag">Filter cards by selected tag
+			<br>
+			<input type="text" class="newTagName"><button type="button" class="addNewTag">New Tag</button>
+			<div><span class="highlightedCardTags"><br><br></span></div> <!-- br's are placeholder content-->
 			<i>Select a tag, then Ctrl+Click to tag/untag cards</i>
 		</div>
 		<div class="matchCount"></div>
