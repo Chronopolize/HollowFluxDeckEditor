@@ -10,6 +10,7 @@ function setupTagPanelButtons(){
 	$('.addNewTag').click(()=>{
 		addTagButton()
 	});
+	setupTagSaveLoadButtons()
 }
 
 function regenerateTagButtons(){
@@ -161,4 +162,26 @@ function tagMatches(card) {
 	}else{
 		return true;
 	}
+}
+
+function exportTagsAsJson(){
+	let str = JSON.stringify(mapToObj(tags))
+	console.log("Exported tags: ", str);
+	return str;
+}
+
+
+function setupTagSaveLoadButtons(){
+	$("#tagsSave").click(()=>{{
+		console.log("tags saved clicked");
+	    downloadToFile(exportTagsAsJson(), 'tags.tags', 'text/plain');
+	}});
+}
+
+function mapToObj(inputMap) {
+    let obj = {};
+    inputMap.forEach(function(value, key){
+        obj[key] = value
+    });
+    return obj;
 }
