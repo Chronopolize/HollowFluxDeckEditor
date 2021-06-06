@@ -116,3 +116,30 @@ function removeElement(array, elem) {
         array.splice(index, 1);
     }
 }
+
+/**
+ 	hoveredCardId: expects an int
+*/
+function updateHighlightedCardTagsText(hoveredCardId){
+	
+	const dest = $(".highlightedCardTags")
+	const cardId = hoveredCardId;
+	const name = cardRepo[cardId].name;
+
+	const tagsFound = getTags(cardId);
+
+	let str;
+	str = `${name}<br>`
+	str += `Tags: (${getTags(cardId).join(", ")})`	
+	dest.html(str);
+}
+
+function getTags(cardId){
+	const found = [];
+	for(let [tagName, cards] of tags){
+		if(cards.includes(cardId)){
+			found.push(tagName);
+		}
+	}
+	return found;
+}

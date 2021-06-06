@@ -66,8 +66,10 @@ function addCardElements() {
 		}); 
 
 		function onHover() {
-			let id = $(this).attr("cardid");
+			let id = parseInt($(this).attr("cardid"));
+			console.log(typeof id);
 			showCardImageAndInfo(id);
+			updateHighlightedCardTagsText(id);
 		}
 	}
 
