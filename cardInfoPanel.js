@@ -21,7 +21,7 @@ function showCardImageAndInfo(id) {
 	const power = (card.type === "Set Card" ? "+" : "") + card.power;
 
 	if (card) {
-		header.html(`<span class="cardTitle">${card.name}</span> {Cost: ${card.cost}} id: ${id}
+		header.html(`<span class="cardTitle">${getCardTitle(id, language)}</span> {Cost: ${card.cost}} id: ${id}
 			${card.type} [${power}] ー ${card.attributes.join("、")}`
 		)
 		desc.html(card.descWithMarkup)

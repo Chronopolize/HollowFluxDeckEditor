@@ -1376,7 +1376,7 @@ const cardRepo = [
    "type": "Cmd",
    "cost": 1,
    "name": "真語索引",
-   "eng_name": "＜Library＞ Index",
+   "eng_name": "'Library' Index",
    "attributes": "魔術",
    "desc": "Target player puts the top 4 cards of their deck in their trash (if their deck has less than 4 cards, all those cards).",
    "power": "/"

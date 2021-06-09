@@ -142,9 +142,8 @@ function regenerateDeckPanel(){
 
 	for(cardMultiple of sortedMain){
 		let card = cardRepo[cardMultiple.id];
-		let entry = $(`<tr class="deckPanelCardEntry"><td class="deckPanelCardEntryName">${card.name} x${cardMultiple.copies}</td><td>${card.cost}</th><td>${getCardTypeShortForm(card)}</td></tr>`)
+		let entry = $(`<tr class="deckPanelCardEntry"><td class="deckPanelCardEntryName">${getCardTitle(card.id, language)} x${cardMultiple.copies}</td><td>${card.cost}</th><td>${getCardTypeShortForm(card)}</td></tr>`)
 		dest.append(entry);
-
 
 		const id = cardMultiple.id;
 		entry.click((e) => {
@@ -166,8 +165,7 @@ function regenerateDeckPanel(){
 		}); 
 		entry.hover(()=>{showCardImageAndInfo(id)})
 	}
-	dest.append(`</table>`);
-
+	dest.append(`</table><br>`);
 	dest.append(`<div class='deckTextHeader'>Guard deck (${deck.sizeGuard()}/${GUARD_DECK_MAX_SIZE})</div>`)
 
 
@@ -189,7 +187,7 @@ function regenerateDeckPanel(){
 
 	for(cardMultiple of sortedGuard){
 		let card = cardRepo[cardMultiple.id];
-		let entry = $(`<tr class="deckPanelCardEntry"><td class="deckPanelCardEntryName">${card.name} x${cardMultiple.copies}</td><td>${card.cost}</th><td>${getCardTypeShortForm(card)}</td></tr>`)
+		let entry = $(`<tr class="deckPanelCardEntry"><td class="deckPanelCardEntryName">${getCardTitle(card.id, language)} x${cardMultiple.copies}</td><td>${card.cost}</th><td>${getCardTypeShortForm(card)}</td></tr>`)
 		dest.append(entry);
 
 
@@ -212,5 +210,9 @@ function regenerateDeckPanel(){
 		entry.hover(()=>{showCardImageAndInfo(id)})
 	}
 	dest.append(`</table>`);
+
+	if(language == ENGLISH){
+		$(".deckPanelCardEntry").addClass("english")  // deck panel is regenerated everytime language changes, so this is fine
+	}
 	
 }

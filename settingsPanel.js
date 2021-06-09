@@ -16,11 +16,12 @@ $("input[type='radio'][name='display_language']").click(function() {
 
 
 function changeLanguage(value){
+	value = parseInt(value);
 	if(language == value) return;
 	language = value;
 
-	console.log("language changed");
-	updateHighlightedCardTagsText(lastId);
+	console.log("language changed", language);
 	showCardImageAndInfo(lastId)
+	updateHighlightedCardTagsText(lastId);
 	regenerateDeckPanel()
 }

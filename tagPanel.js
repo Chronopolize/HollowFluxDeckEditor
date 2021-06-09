@@ -139,7 +139,7 @@ function updateHighlightedCardTagsText(hoveredCardId){
 	const tagsFound = getTags(cardId);
 
 	let str;
-	str = `${name}<br>`
+	str = `${getCardTitle(hoveredCardId, language)}<br>`
 	str += `Tags: (${getTags(cardId).join(", ")})`	
 	dest.html(str);
 }
