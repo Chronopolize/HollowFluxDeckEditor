@@ -121,7 +121,7 @@ function nameMatches(card){
 	const nameString = $(".nameSearch").val()
 	if(!nameString)
 		return true;
-	return card.name.includes(nameString)
+	return card.name.includes(nameString)  || containsCI(card.eng_name, nameString);
 }
 
 function descriptionMatches(card) {
@@ -235,4 +235,9 @@ function equalsCI(a, b) {
 	} else {
 		console.log("ciEquals: Expected type string string, got:", typeof a, typeof b);
 	}
+}
+function containsCI(a, b){
+	a = a.toLowerCase();
+	b = b.toLowerCase();
+	return a.includes(b);
 }
