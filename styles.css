@@ -30,11 +30,15 @@
   	background-color: lightgreen;
 }
 
+.settingsPanel{
+	padding:5px;
+	background-color: #989898
+}
 
 .cardSearchPanel{
 	padding:5px;
 	min-height:140px;
-	background-color:gray;
+	background-color:#989898;
 }
 .tagPanel{
 	padding:5px;

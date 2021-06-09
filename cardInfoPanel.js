@@ -4,10 +4,13 @@ function showCardImage(id){
 	panel.css("visibility", "visible");
 }
 
+let lastId;
 /**
 	id expects an int
 */
 function showCardImageAndInfo(id) {
+
+	lastId = id;
 
 	showCardImage(id);
 

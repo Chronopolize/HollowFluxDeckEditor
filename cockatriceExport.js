@@ -11,19 +11,20 @@ function escapeNameChars(str){
 }
 
 
-function ouputSetXML(){
+function outputSetXML(){
 	let cardsXML = "";
 
 for (let id = 1; id <= repoCardCount; id++){
 	let card = cardRepo[id];
 
 	// change title characters which Cockatrice can't handle
+	// Use main-type slot to display english name since I dunno how to make Cockatrice display custom properties.
 	let cardXML = `<card>
 			<name>${escapeNameChars(card.name)}</name>
 			<text>${escapeXML(card.desc)}</text>
 			<prop>
 				<type>${card.type} ― ${card.attributes.join(", ")}</type>
-				<maintype>${card.type}</maintype>
+				<maintype>${card.eng_name}</maintype>
 				<manacost>${card.cost}</manacost>
 				<pt>${card.power}</pt>
 			</prop>

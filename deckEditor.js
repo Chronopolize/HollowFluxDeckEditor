@@ -1,3 +1,10 @@
+window.addEventListener('beforeunload', function (e) {  // Prompt user to prevent accidental data loss
+  // Cancel the event
+  e.preventDefault(); // If you prevent default behavior in Mozilla Firefox prompt will always be shown
+  // Chrome requires returnValue to be set
+  e.returnValue = '';
+});
+
 $(document).ready(function() {
 	loadAndProcessCardData();
 
@@ -11,7 +18,7 @@ $(document).ready(function() {
 	applySearchFilters()
  	
 	regenerateDeckPanel()
-	// ouputSetXML() // for developer use
+	// outputSetXML() // for developer use
 	// outputCockatriceImgNames() // for developer use
 });
 
