@@ -7,7 +7,7 @@ function escapeXML(str){
                .replace(/>/g, '&gt;')
 }
 
-function escapeHtml(unsafe) {
+function escapeHTML(unsafe) {
     return unsafe
          .replace(/&/g, "&amp;")
          .replace(/</g, "&lt;")
@@ -35,8 +35,8 @@ for (let id = 1; id <= repoCardCount; id++){
 			<name>${escapeNameChars(card.name)}</name>
 			<text>${escapeXML(card.desc)}</text>
 			<prop>
-				<type>${card.type} ― ${card.attributes.join(", ")}</type>
-				<maintype>${card.eng_name}</maintype>
+				<type>${card.type} ― ${card.eng_attributes.join(", ")}</type>
+				<maintype>${escapeXML(card.eng_name)}</maintype>
 				<manacost>${card.cost}</manacost>
 				<pt>${card.power}</pt>
 			</prop>
