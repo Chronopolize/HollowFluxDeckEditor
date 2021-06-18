@@ -6,9 +6,21 @@ function escapeXML(str){
                .replace(/</g, '&lt;')
                .replace(/>/g, '&gt;')
 }
+
+function escapeHtml(unsafe) {
+    return unsafe
+         .replace(/&/g, "&amp;")
+         .replace(/</g, "&lt;")
+         .replace(/>/g, "&gt;")
+         .replace(/"/g, "&quot;")
+         .replace(/'/g, "&#039;");
+ }
+
 function escapeNameChars(str){
 	return str.replaceAll(/[「」]/g, "”")
 }
+
+
 
 
 function outputSetXML(){

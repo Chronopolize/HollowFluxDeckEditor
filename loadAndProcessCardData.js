@@ -46,6 +46,14 @@ function loadAndProcessCardData() {
 		} else {
 			card.attributes = card.attributes.split(/[\s,・]+/)
 		}
+
+		if (card.eng_attributes === null || typeof card.eng_attributes == "undefined") {
+			card.eng_attributes = ["Unknown"];
+		} else if (card.eng_attributes === "") {
+			card.eng_attributes = [];
+		} else {
+			card.eng_attributes = card.eng_attributes.split(/[,・]+/)
+		}
 	}
 
 	labelDescriptionKeywords()

@@ -103,6 +103,16 @@ function getCardTitle(id, language){
 	}
 }
 
+function getCardAttributes(id, language){
+	switch(language){
+		case ENGLISH:
+			return cardRepo[id].eng_attributes;
+		case JAPANESE:
+		default:
+			return cardRepo[id].attributes;
+	}
+}
+
 
 
 
