@@ -1,7 +1,7 @@
 
 const cardRepo = [
 {}, //0-index is empty
- {
+   {
    "id": 1,
    "type": "C",
    "cost": 1,
@@ -20,7 +20,7 @@ const cardRepo = [
    "eng_name": "Riselia Edelheit",
    "attributes": "人間",
    "eng_attributes": "Human",
-   "desc": "Can't attack. If hand size 2 or less, draw a card\n[2S] : Scry 1",
+   "desc": "Can't attack. If hand size 2 or less, draw a card\n[2S] : Look at the top card of your main deck. You may move it to the bottom of your main deck.",
    "power": "1000"
  },
  {
@@ -118,7 +118,7 @@ const cardRepo = [
    "name": "等活者　アリヤ",
    "eng_name": "Arya of Sañjīva",
    "attributes": "理霊・始原識",
-   "eng_attributes": "Logical Spirit・Fate-bound",
+   "eng_attributes": "Digital Spirit・Fate-bound",
    "desc": "[1S]: Give this character +1000 until EoT\n[1+Unsleep]: Give this character +1000 and \"can't attack\" until EoT. ",
    "power": "2500"
  },
@@ -129,7 +129,7 @@ const cardRepo = [
    "name": "天涯者　オーロラ",
    "eng_name": "Aurora of Distant Skies",
    "attributes": "理霊・始原識",
-   "eng_attributes": "Logical Spirit・Fate-bound",
+   "eng_attributes": "Digital Spirit・Fate-bound",
    "desc": "This character can't be blocked by followers with higher power than it.\n[1]: This character cannot be the target of command cards until EoT.",
    "power": "1000"
  },
@@ -153,7 +153,7 @@ const cardRepo = [
    "attributes": "人間・始原識",
    "eng_attributes": "Human・Fate-bound",
    "desc": "FF: You may return a command card from your trash to your hand\nDT: Look at the top card of your main deck. You may choose to leave it or put it in the trash.",
-   "power": "2500"
+   "power": "1000"
  },
  {
    "id": 15,
@@ -250,7 +250,7 @@ const cardRepo = [
    "name": "拝火者クルティカ",
    "eng_name": "Crutica, Worshipper of Flame",
    "attributes": "理霊・始原識",
-   "eng_attributes": "Logical Spirit・Fate-bound",
+   "eng_attributes": "Digital Spirit・Fate-bound",
    "desc": "FF: You may deal 2000 to target character\n[S]: Deal 2000 damage to target character",
    "power": "2000"
  },
@@ -261,7 +261,7 @@ const cardRepo = [
    "name": "プロトタイプ・デュナミス",
    "eng_name": "Prototype Dunamis",
    "attributes": "理霊・特異存在",
-   "eng_attributes": "Logical Spirit・Extradimensional Being",
+   "eng_attributes": "Digital Spirit・Extradimensional Being",
    "desc": "FF: For every player, you may select a card in their trash and remove it from the game\nWhenever this attacks a character, it does X*1000 damage to that character, where X is the number of cards removed from the game.",
    "power": "3500"
  },
@@ -405,7 +405,7 @@ const cardRepo = [
    "eng_name": "Inistalia Edelheit",
    "attributes": "特異存在",
    "eng_attributes": "Extradimensional Being",
-   "desc": "FF: You may search your card for an [Equipment] card that contains 剣 in it's name and set it on this character.\n[Discard a card]: Give a target character -1000 until EoT",
+   "desc": "FF: You may search your card for an [Equipment] card that contains \"Sword\" in it's name and set it on this character.\n[Discard a card]: Give a target character -1000 until EoT",
    "power": "3000"
  },
  {
@@ -470,7 +470,7 @@ const cardRepo = [
    "name": "破星者　メテオライト",
    "eng_name": "Meterorite, World-Breaker",
    "attributes": "理霊・始原識",
-   "eng_attributes": "Logical Spirit・Fate-bound",
+   "eng_attributes": "Digital Spirit・Fate-bound",
    "desc": "Vigilance\n[S]: Set the top card of your main deck onto this as \"Name: Charge Cost:1 Fate-bound Mod: +1000\"\n[Trash four set cards attached to this card]: Deal 1 damage to target player and 6000 damage to all characters they control.",
    "power": "5000"
  },
@@ -525,7 +525,7 @@ const cardRepo = [
    "name": "克肖者 デュナミス",
    "eng_name": "Saintly Dunamis",
    "attributes": "理霊・特異存在",
-   "eng_attributes": "Logical Spirit・Extradimensional Being",
+   "eng_attributes": "Digital Spirit・Extradimensional Being",
    "desc": "[Remove two cards in your trash from the game]: Deal X*1000 damage to target character, where X is the number of your cards removed from the game. Only use this ability once per turn.\n[3S]: Put one of your cards, costing 7 or less, removed from the game, into your hand.",
    "power": "6500"
  },
@@ -581,7 +581,7 @@ const cardRepo = [
    "eng_name": "Ichii Reika",
    "attributes": "人間・特異能力",
    "eng_attributes": "Human・Extradimensional Power",
-   "desc": "Retaliate. This character can block attacks against your [Logical Spirit] characters even while slept. \nWhen this character is destroyed, give all enemy characters -5000 (permanently)\nDT: Give target character -1000",
+   "desc": "Retaliate. This character can block attacks against your [Digital Spirit] characters even while slept. \nWhen this character is destroyed, give all enemy characters -5000 (permanently)\nDT: Give target character -1000",
    "power": "7500"
  },
  {
@@ -690,7 +690,7 @@ const cardRepo = [
    "name": "主なき実験体",
    "eng_name": "Nameless Test Subject",
    "attributes": "理霊",
-   "eng_attributes": "Logical Spirit",
+   "eng_attributes": "Digital Spirit",
    "desc": "Piercing",
    "power": "3500"
  },
@@ -735,7 +735,7 @@ const cardRepo = [
    "eng_name": "Mage of the Aletheian Order",
    "attributes": "人間・魔術",
    "eng_attributes": "Human・Magic",
-   "desc": "Retaliate.",
+   "desc": "Retaliate",
    "power": "5500"
  },
  {
@@ -922,7 +922,7 @@ const cardRepo = [
    "eng_name": "System: Accasia Reload",
    "attributes": "発現者",
    "eng_attributes": "Esper",
-   "desc": "Put a [Esper] card from your trash into your hand.\nDT: Target character gains Deathless until EoT.",
+   "desc": "Put a [Esper] character card from your trash into your hand.\nDT: Target character gains Deathless until EoT.",
    "power": "/"
  },
  {
@@ -952,7 +952,7 @@ const cardRepo = [
    "type": "S",
    "cost": 2,
    "name": "光剣　魅天零式",
-   "eng_name": "Light-blade, Miten Mk1",
+   "eng_name": "Light-sword, Miten Mk1",
    "attributes": "装備",
    "eng_attributes": "Equipment",
    "desc": "Piercing\nDT[2]: Set this card on a character. You may place the top card of your deck in your damage field, face up.",
@@ -1007,11 +1007,11 @@ const cardRepo = [
    "type": "C",
    "cost": 7,
    "name": "王立アカデミーの学徒 ルア",
-   "eng_name": "Lua, Royal Academy Pupil",
+   "eng_name": "Rua, Royal Academy Pupil",
    "attributes": "人間・魔術",
    "eng_attributes": "Human・Magic",
    "desc": "FF: You may trash one of the opponent's energy cards. If you do, ramp 1.\n[1S]: Sleep target character",
-   "power": "2000"
+   "power": "4000"
  },
  {
    "id": 93,
@@ -1021,7 +1021,7 @@ const cardRepo = [
    "eng_name": "Teiri Tougishi",
    "attributes": "特異存在",
    "eng_attributes": "Extradimensional Being",
-   "desc": "FF: If this character entered play from outside of the game, look at the top 3 cards of your deck. You play place any number of them in your damage field, face up.\nThis character cannot be blocked.\n[Carnage 1]: Remove this card from the game. At the end of the turn, you may put an allied Teiri Tougishi removed from game into play, active.",
+   "desc": "FF: If this character entered play from outside of the game, you may place up to three cards from the top of your main deck into your damage field, face up.\nThis character cannot be blocked.\n[Carnage 1]: Remove this card from the game. At the end of the turn, you may put an allied Teiri Tougishi removed from game into play, active.",
    "power": "7000"
  },
  {
@@ -1273,7 +1273,7 @@ const cardRepo = [
    "name": "天涯の理霊　アーロラ",
    "eng_name": "Aurora, Digital Spirit of the Skies",
    "attributes": "理霊・始原識",
-   "eng_attributes": "Logical Spirit・Fate-bound",
+   "eng_attributes": "Digital Spirit・Fate-bound",
    "desc": "Hypersonic (This card can't be blocked by cards without Hypersonic)\nDT[2]: Unsleep target character.",
    "power": "3500"
  },
@@ -1296,7 +1296,7 @@ const cardRepo = [
    "eng_name": "Reika, The Spirit-Wielding Hero",
    "attributes": "人間・始原識",
    "eng_attributes": "Human・Fate-bound",
-   "desc": "Hypersonic\nFF: Look at up to the top 5 cards of your deck. You may reveal a Logical Spirit card cost 5 or less. If you do so, summon that card and place remaining cards on the bottom of your deck in any order.",
+   "desc": "Hypersonic\nFF: Look at up to the top 5 cards of your deck. You may reveal a Digital Spirit card cost 5 or less. If you do so, summon that card and place remaining cards on the bottom of your deck in any order.",
    "power": "2000"
  },
  {
@@ -1329,7 +1329,7 @@ const cardRepo = [
    "eng_name": "Between Destiny and Wills",
    "attributes": "ルールブレイク",
    "eng_attributes": "Rule Break",
-   "desc": "Secret Arts: <A card with Fate-bound, and a card with either Extradimensional Power or Extradimensional Being> \nPlace this card face up in your guard deck. If you don't already have this effect, gain the following effect:\n\"As long as there is a card named Between 'Destiny and Wills' face-up in your guard deck, all allied Fate-bound, Extradimensional Power, and Extradimensional Being character cards gain +1000.",
+   "desc": "[Secret Arts: A card with Fate-bound, and a card with either Extradimensional Power or Extradimensional Being]\nPlace this card face up in your guard deck. If you don't already have this effect, gain the following effect:\n\"As long as there is a card named Between 'Destiny and Wills' face-up in your guard deck, all allied Fate-bound, Extradimensional Power, and Extradimensional Being character cards gain +1000.",
    "power": "/"
  },
  {
@@ -1370,7 +1370,7 @@ const cardRepo = [
    "type": "C",
    "cost": 3,
    "name": "四条五花",
-   "eng_name": "Ituka Shijou",
+   "eng_name": "Itsuka Shijou",
    "attributes": "人間",
    "eng_attributes": "Human",
    "desc": "As long as this character is on the field, all other allied human characters get +1000, and characters you control lose any ability which says \"This character cannot attack.\"\nDT: look at at target player's hand.",
@@ -1571,7 +1571,7 @@ const cardRepo = [
    "eng_name": "Spirit-wielder Ionia",
    "attributes": "人間・始原識",
    "eng_attributes": "Human・Fate-bound",
-   "desc": "FF: You may summon a Logical Spirit character card from your trash, active.\n[Destroy an allied Logical Spirit character]: Deal 4000 damage to target character\nDT: Look at the top card of your deck. You may put it into your trash.",
+   "desc": "FF: You may summon a Digital Spirit character card from your trash, active.\n[Destroy an allied Digital Spirit character]: Deal 4000 damage to target character\nDT: Look at the top card of your deck. You may put it into your trash.",
    "power": "2000"
  },
  {
