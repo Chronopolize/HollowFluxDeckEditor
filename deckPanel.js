@@ -142,7 +142,7 @@ function regenerateDeckPanel(){
 
 	for(cardMultiple of sortedMain){
 		let card = cardRepo[cardMultiple.id];
-		let entry = $(`<tr class="deckPanelCardEntry"><td class="deckPanelCardEntryName">${getCardTitle(card.id, language)} x${cardMultiple.copies}</td><td>${card.cost}</th><td>${getCardTypeShortForm(card)}</td></tr>`)
+		let entry = $(`<tr class="deckPanelCardEntry"><td class="deckPanelCardEntryName">${escapeHTML(getCardTitle(card.id, language))} x${cardMultiple.copies}</td><td>${card.cost}</th><td>${getCardTypeShortForm(card)}</td></tr>`)
 		dest.append(entry);
 
 		const id = cardMultiple.id;
@@ -187,7 +187,7 @@ function regenerateDeckPanel(){
 
 	for(cardMultiple of sortedGuard){
 		let card = cardRepo[cardMultiple.id];
-		let entry = $(`<tr class="deckPanelCardEntry"><td class="deckPanelCardEntryName">${getCardTitle(card.id, language)} x${cardMultiple.copies}</td><td>${card.cost}</th><td>${getCardTypeShortForm(card)}</td></tr>`)
+		let entry = $(`<tr class="deckPanelCardEntry"><td class="deckPanelCardEntryName">${escapeHTML(getCardTitle(card.id, language))} x${cardMultiple.copies}</td><td>${card.cost}</th><td>${getCardTypeShortForm(card)}</td></tr>`)
 		dest.append(entry);
 
 
